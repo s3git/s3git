@@ -1,14 +1,14 @@
 s3git: git for Cloud Storage
 ============================
 
-s3git applies the git philosophy to Cloud Storage. If you know git, you will know how to use s3git...
+s3git applies the git philosophy to Cloud Storage. If you know git, you will know how to use s3git!
 
 s3git is a simple CLI tool that allows you to create a *distributed*, *decentralized* and *versioned* repository. It scales limitlessly to 100s of millions of files and PBs of storage and stores your data safely in S3. Yet huge repos can be cloned on the SSD of your laptop for making local changes, committing and pushing back.
 
 Exactly like git, s3git does not require any server-side components, just download and run the executable. It is based on a golang package [s3git-go](s3git-go) that can be used from other applications as well.
 
-Download
---------
+Download binaries
+-----------------
 <<describe how to download
 
 Example workflow
@@ -62,13 +62,13 @@ Key features
 
  * **Infinite scalability:** Stop worrying about maximum repository sizes and have the ability to grow indefinitely
 
+ * **Work from local SSD:** Make a huge cloud disk appear like a local drive
+
  * **Instant sync:** Push local changes and pull down instantly on other clones
 
  * **Versioning:** Keep previous versions safe and have the ability to undo or go back in time
 
  * **Forking:** Ability to make many variants by forking
-
- * **Work from local SSD:** Make a huge cloud disk appear like a local drive
 
  * **Verifiable:** Be sure that you have everything and be tamper-proof (“data has not been messed with”)
 
@@ -76,13 +76,36 @@ Key features
 
  * **Simplicity:** Simple by design and provide one way to accomplish tasks
 
-
 Command Line Help
 -----------------
 
 ```
-s3git help
-USAGE
+$ s3git help
+s3git applies the git philosophy to Cloud Storage. If you know git, you will know how to use s3git.
+
+s3git is a simple CLI tool that allows you to create a distributed, decentralized and versioned repository.
+It scales limitlessly to 100s of millions of files and PBs of storage and stores your data safely in S3.
+Yet huge repos can be cloned on the SSD of your laptop for making local changes, committing and pushing back.
+
+Usage:
+  s3git [command]
+
+Available Commands:
+  add         Add file(s) to the repository
+  cat         Read a file from the repository
+  clone       Clone a repository into a new directory
+  commit      Commit the changes in the repository
+  init        Create an empty repository
+  ls          List files in the repository
+  pull        Update local repository
+  push        Update remote repositories
+  remote      Manage remote reposities
+  status      Show changes to repository
+
+Flags:
+  -h, --help[=false]: help for s3git
+
+Use "s3git [command] --help" for more information about a command.
 ```
 
 Use cases
@@ -97,6 +120,8 @@ s3git log
 FAQ
 ---
 
-**Q** Why don't you support FUSE?  
-**A** Because
+**Q** Why don't you provide a FUSE interface?  
+**A** Supporting FUSE would mean introducing a lot of complexity related to POSIX which we would rather avoid.
+
 Configurable back ends
+----------------------
