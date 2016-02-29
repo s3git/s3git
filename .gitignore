@@ -1,0 +1,5 @@
+# User-specific stuff:
+.idea/*
+
+*.xlsx
+s3git
