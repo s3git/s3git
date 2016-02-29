@@ -1,7 +1,7 @@
 s3git: git for Cloud Storage
 ============================
 
-s3git applies the git philosophy to Cloud Storage. If you know git, you know how to use s3git...
+s3git applies the git philosophy to Cloud Storage. If you know git, you will know how to use s3git...
 
 s3git is a simple CLI tool that allows you to create a *distributed*, *decentralized* and *versioned* repository. It scales limitlessly to 100s of millions of files and PBs of storage and stores your data safely in S3. Yet huge repos can be cloned on the SSD of your laptop for making local changes, committing and pushing back.
 
@@ -56,25 +56,25 @@ bob $
 Key features
 ------------
 
-  * ** Easy:** Use a workflow and syntax that you already know and love
+ * **Easy:** Use a workflow and syntax that you already know and love
 
-  * ** Fast:** Lightning fast operation, especially on large files and huge repositories
+ * **Fast:** Lightning fast operation, especially on large files and huge repositories
 
-  * ** Infinite scalability:** Stop worrying about maximum repository sizes and have the ability to grow indefinitely
+ * **Infinite scalability:** Stop worrying about maximum repository sizes and have the ability to grow indefinitely
 
-  * ** Instant sync:** Push local changes and pull down instantly on other clones
+ * **Instant sync:** Push local changes and pull down instantly on other clones
 
-  * ** Versioning:** Keep previous versions safe and have the ability to undo or go back in time
+ * **Versioning:** Keep previous versions safe and have the ability to undo or go back in time
 
-  * ** Forking:** Ability to make many variants by forking
+ * **Forking:** Ability to make many variants by forking
 
-  * ** Work from local SSD:** Make a huge cloud disk appear like a local drive
+ * **Work from local SSD:** Make a huge cloud disk appear like a local drive
 
-  * ** Verifiable:** Be sure that you have everything and be tamper-proof (“data has not been messed with”)
+ * **Verifiable:** Be sure that you have everything and be tamper-proof (“data has not been messed with”)
 
-  * ** Deduplication:** Do not store the same data twice
+ * **Deduplication:** Do not store the same data twice
 
-  * ** Simplicity:** Simple by design and provide one way to accomplish tasks
+ * **Simplicity:** Simple by design and provide one way to accomplish tasks
 
 
 Command Line Help
