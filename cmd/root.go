@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // This represents the base command when called without any subcommands
@@ -32,12 +31,6 @@ func init() {
 	cobra.OnInitialize(initConfig)
 }
 
-// initConfig reads in config file and ENV variables if set.
+// initConfig reads in config file
 func initConfig() {
-	viper.SetConfigName(".s3gitconfig") // name of config file (without extension)
-	viper.SetConfigType("json")			// default to json
-	viper.AddConfigPath(".")  			// adding local directory as search path
-
-	// If a config file is found, read it in while ignoring errors (fine if no file found)
-	_ = viper.ReadInConfig();
 }
