@@ -7,6 +7,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func er(msg interface{}) {
+	fmt.Println("Error:", msg)
+	os.Exit(-1)
+}
+
 // This represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "s3git",
@@ -22,8 +27,7 @@ Yet huge repos can be cloned on the SSD of your laptop for making local changes,
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	if err := RootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(-1)
+		er(err)
 	}
 }
 

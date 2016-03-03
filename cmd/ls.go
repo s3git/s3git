@@ -14,12 +14,21 @@ var lsCmd = &cobra.Command{
 	Long: "List files in the repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		repo, err := s3git.OpenRepository(".")
+		repo, err := s3git.OpenRepository("/Users/frankw/golang/src/github.com/fwessels/ldcli-test/alice/lifedrive-100m-euc1-objs")
 		if err != nil {
-			fmt.Println(err)
+			er(err)
 		}
 
-		for elem := range repo.List() {
+		arg := ""
+		if len(args) > 0 {
+			arg = args[0]
+		}
+		list, err := repo.List(arg)
+		if err != nil {
+			er(err)
+		}
+
+		for elem := range list {
 			fmt.Println(elem)
 		}
 	},

@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/fwessels/s3git-go"
 	"github.com/spf13/cobra"
 )
 
@@ -12,8 +13,21 @@ var statusCmd = &cobra.Command{
 	Short: "Show changes to repository",
 	Long: "Show changes to repository",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("status called")
+
+		repo, err := s3git.OpenRepository(".")
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		list, err := repo.Status()
+		if err != nil {
+			er(err)
+		}
+
+		for elem := range list {
+			fmt.Println(elem)
+		}
+
 	},
 }
 

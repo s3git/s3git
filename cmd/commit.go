@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"fmt"
 
+	_ "github.com/fwessels/s3git-go"
 	"github.com/spf13/cobra"
 )
 
@@ -12,8 +12,8 @@ var commitCmd = &cobra.Command{
 	Short: "Commit the changes in the repository",
 	Long: "Commit the changes in the repository",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("commit called")
+
+		// TODO: Add commit command
 	},
 }
 
