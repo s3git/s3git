@@ -24,10 +24,18 @@ var statusCmd = &cobra.Command{
 			er(err)
 		}
 
+		elements := 0
 		for elem := range list {
-			fmt.Println(elem)
+			if elements == 0 {
+				fmt.Println("Changes to be committed:")
+			}
+			fmt.Println("\t", elem)
+			elements++
 		}
 
+		if elements == 0 {
+			fmt.Println("Nothing to commit, staging directory clean")
+		}
 	},
 }
 
