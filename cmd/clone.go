@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/fwessels/s3git-go"
+	"github.com/s3git/s3git-go"
 	"github.com/cheggaaa/pb"
 	"github.com/spf13/cobra"
 )

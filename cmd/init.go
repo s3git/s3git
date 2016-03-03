@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/fwessels/s3git-go"
+	"github.com/s3git/s3git-go"
 )
 
 // initCmd represents the init command

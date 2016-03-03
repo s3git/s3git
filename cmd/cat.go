@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/fwessels/s3git-go"
+	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
 )
 
