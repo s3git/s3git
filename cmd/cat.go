@@ -19,7 +19,7 @@ var catCmd = &cobra.Command{
 			er("Argument missing")
 		}
 
-		repo, err := s3git.OpenRepository("/Users/frankw/golang/src/github.com/fwessels/ldcli-test/alice/lifedrive-100m-euc1-objs")
+		repo, err := s3git.OpenRepository(".")
 		if err != nil {
 			er(err)
 		}

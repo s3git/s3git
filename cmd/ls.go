@@ -14,7 +14,7 @@ var lsCmd = &cobra.Command{
 	Long: "List files in the repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		repo, err := s3git.OpenRepository("/Users/frankw/golang/src/github.com/fwessels/ldcli-test/alice/lifedrive-100m-euc1-objs")
+		repo, err := s3git.OpenRepository(".")
 		if err != nil {
 			er(err)
 		}
