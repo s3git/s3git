@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"os"
+	"fmt"
 	"path/filepath"
 
 	"github.com/s3git/s3git-go"
@@ -22,7 +23,12 @@ var addCmd = &cobra.Command{
 
 		if len(args) == 0 {
 			// Read from stdin
-			repo.Add(os.Stdin)
+			key, newBlob, err := repo.Add(os.Stdin)
+			if err != nil {
+				er(err)
+			}
+			printKey(key, newBlob)
+
 		} else {
 			// Iterate over file list
 			// TODO: Add support for '...' operator (** wildcard)?
@@ -38,14 +44,23 @@ var addCmd = &cobra.Command{
 						er(err)
 					}
 
-					_, err = repo.Add(file)
+					key, newBlob, err := repo.Add(file)
 					if err != nil {
 						er(err)
 					}
+					printKey(key, newBlob)
 				}
 			}
 		}
 	},
+}
+
+func printKey(key string, newBlob bool) {
+	if newBlob {
+		fmt.Println("Added:", key)
+	} else {
+		fmt.Println("Already in repo:", key)
+	}
 }
 
 func init() {
