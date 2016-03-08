@@ -5,7 +5,7 @@ s3git applies the git philosophy to Cloud Storage. If you know git, you will kno
 
 s3git is a simple CLI tool that allows you to create a *distributed*, *decentralized* and *versioned* repository. It scales limitlessly to 100s of millions of files and PBs of storage and stores your data safely in S3. Yet huge repos can be cloned on the SSD of your laptop for making local changes, committing and pushing back.
 
-Exactly like git, s3git does not require any server-side components, just download and run the executable. It is based on a golang package [s3git-go](s3git-go) that can be used from other applications as well.
+Exactly like git, s3git does not require any server-side components, just download and run the executable. It imports the golang package [s3git-go](s3git-go) that can be used from other applications as well.
 
 Download binaries
 -----------------
@@ -26,10 +26,10 @@ $ s3git log
 Clone the YFCC100M dataset
 --------------------------
 
-Clone a large repo with 100 million files totalling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space (takes several minutes):
+Clone a large repo with 100 million files totaling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space (takes several minutes):
 
 ```
-$ s3git clone s3://lifedrive-100m-usw2
+$ s3git clone s3://s3git-100m-usw2
 Cloning into ...
 Done. Totalling 97345456 objects.
 $ s3git ls 123456
@@ -43,7 +43,7 @@ $ s3git cat cafebad > olympic.jpg
 And collaborate
 ---------------
 
-Continuing as `alice` from the example above, clone it again as `bob` on a different computer or into a different directory
+Continuing as `alice` from the example above, clone it again as `bob` on a different computer or in a different directory
 
 ```
 alice $
