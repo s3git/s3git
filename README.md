@@ -11,8 +11,18 @@ Download binaries
 -----------------
 <<describe how to download
 
+Building from source
+--------------------
+
+Make sure you have a working Golang environment and do as follows
+```
+go get -d github.com/s3git/s3git
+cd $GOPATH/src/github.com/s3git/s3git
+go install
+```
+
 Example workflow
----------------
+----------------
 
 Here is a simple workflow to create a new repository and populate it with some data:
 ```
@@ -52,6 +62,11 @@ alice $
 ```
 bob $
 ```
+
+Contributions
+-------------
+
+Contributions are welcome! See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 Key features
 ------------
@@ -116,6 +131,11 @@ s3git commit "Holiday pictures"
 s3git commit "Photos from birthday"
 s3git log
 ```
+
+License
+-------
+
+TBD.
 
 FAQ
 ---
