@@ -28,7 +28,7 @@ var commitCmd = &cobra.Command{
 		if nothing {
 			fmt.Println("Nothing to commit")
 		} else {
-			fmt.Printf("[master%s]\n", key)
+			fmt.Printf("[master %s]\n", key)
 			fmt.Printf("X files added, Y files removed\n")
 		}
 	},
