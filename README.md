@@ -9,17 +9,12 @@ Exactly like git, s3git does not require any server-side components, just downlo
 
 Download binaries
 -----------------
-<<describe how to download
+To follow.
 
 Building from source
 --------------------
 
-Make sure you have a working Golang environment and do as follows
-```
-go get -d github.com/s3git/s3git
-cd $GOPATH/src/github.com/s3git/s3git
-go install
-```
+Unfortunately not yet possible due to missing SDK, stay tuned!
 
 Example workflow
 ----------------
