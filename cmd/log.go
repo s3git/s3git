@@ -34,7 +34,7 @@ var logCmd = &cobra.Command{
 			er(err)
 		}
 
-		list, err := repo.ListCommits()
+		list, err := repo.ListCommits("")
 		if err != nil {
 			er(err)
 		}
