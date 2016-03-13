@@ -17,8 +17,7 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
 )
 
@@ -28,8 +27,16 @@ var pullCmd = &cobra.Command{
 	Short: "Update local repository",
 	Long: "Update local repository",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("pull called")
+
+		repo, err := s3git.OpenRepository(".")
+		if err != nil {
+			er(err)
+		}
+
+		err = repo.Pull()
+		if err != nil {
+			er(err)
+		}
 	},
 }
 
