@@ -17,8 +17,10 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
+	"github.com/cheggaaa/pb"
 )
 
 // pullCmd represents the pull command
@@ -33,9 +35,25 @@ var pullCmd = &cobra.Command{
 			er(err)
 		}
 
-		err = repo.Pull()
+		var barPulling *pb.ProgressBar
+
+		progressPull := func(total int64) {
+			if barPulling == nil {
+				barPulling = pb.New64(total).Start()
+				barPulling.Prefix("Pulling ")
+			}
+			if barPulling.Increment() == int(total) {
+				barPulling.Finish()
+			}
+		}
+
+		err = repo.Pull(progressPull)
 		if err != nil {
 			er(err)
+		}
+
+		if barPulling == nil {
+			fmt.Println("Already up-to-date.")
 		}
 	},
 }
