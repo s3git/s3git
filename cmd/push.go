@@ -17,9 +17,13 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
+	"github.com/cheggaaa/pb"
 )
+
+var hydrated bool
 
 // pushCmd represents the push command
 var pushCmd = &cobra.Command{
@@ -33,13 +37,32 @@ var pushCmd = &cobra.Command{
 			er(err)
 		}
 
-		err = repo.Push()
+		var barPushing *pb.ProgressBar
+
+		progressPush := func(total int64) {
+			if barPushing == nil {
+				barPushing = pb.New64(total).Start()
+				barPushing.Prefix("Pushing ")
+			}
+			if barPushing.Increment() == int(total) {
+				barPushing.Finish()
+			}
+		}
+
+		err = repo.Push(hydrated, progressPush)
 		if err != nil {
 			er(err)
+		}
+
+		if barPushing == nil {
+			fmt.Println("Already up-to-date.")
 		}
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(pushCmd)
+
+	// Add local message flags
+	pushCmd.Flags().BoolVar(&hydrated, "hydrated", false, "Store in hydrated (concatenated) format at remote")
 }
