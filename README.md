@@ -21,11 +21,19 @@ Example workflow
 
 Here is a simple workflow to create a new repository and populate it with some data:
 ```
-$ s3git init s3://mybucket -a "ACCESSKEY" -s "SECRETKEY"
-$ s3git add "*.jpg"
+$ s3git init
+$ echo "hello s3git" | s3git add
+$ s3git add "*.mp4"
 $ s3git commit -m "My first commit"
-$ s3git push
 $ s3git log
+```
+
+Push to cloud storage
+---------------------
+
+```
+$ s3git remote add "primary" -r s3://mybucket -a "ACCESSKEY" -s "SECRETKEY"
+$ s3git push
 ```
 
 Clone the YFCC100M dataset
