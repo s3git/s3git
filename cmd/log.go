@@ -20,7 +20,10 @@ import (
 	"fmt"
 	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
+	"github.com/fatih/color"
 )
+
+var oneline bool
 
 // logCmd represents the log command
 var logCmd = &cobra.Command{
@@ -40,11 +43,31 @@ var logCmd = &cobra.Command{
 		}
 
 		for commit := range list {
-			fmt.Println(commit.Hash, commit.Message)
+			if oneline {
+				color.Set(color.FgYellow)
+				fmt.Print(commit.Hash)
+				color.Unset()
+				fmt.Print(" ")
+				fmt.Println(commit.Message)
+
+			} else {
+				color.Set(color.FgYellow)
+				fmt.Println("commit", commit.Hash)
+				color.Unset()
+
+
+				fmt.Println("Date:", commit.TimeStamp)
+				fmt.Println()
+				fmt.Println("   ", commit.Message)
+				fmt.Println()
+			}
 		}
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(logCmd)
+
+	// Add local message flags
+	logCmd.Flags().BoolVarP(&oneline, "pretty", "p", false, "Pretty format")
 }
