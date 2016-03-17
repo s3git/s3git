@@ -24,6 +24,10 @@ import (
 	"github.com/s3git/s3git-go"
 )
 
+var resource string
+var accessKey string
+var secretKey string
+
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
@@ -36,18 +40,28 @@ var initCmd = &cobra.Command{
 			er(err)
 		}
 
-		_ /*repo*/, err = s3git.InitRepository(dir)
+		repo, err := s3git.InitRepository(dir)
 		if err != nil {
 			er(err)
 		}
 
 		fmt.Printf("Initialized empty s3git repository in %s\n", dir)
 
-//		repo.Remotes = append(repo.Remotes, s3git.Remote{}) // .Add("s3://mybucket", "ACIA1234", "SECRETKEY")
-//		fmt.Println(len(repo.Remotes))
+		// Add remote when resource specifier is not empty (access & secret may be omitted for public access)
+		if resource != "" {
+			err := repo.RemoteAdd("primary", resource, accessKey, secretKey)
+			if err != nil {
+				er(err)
+			}
+		}
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(initCmd)
+
+	// Add local message flags
+	initCmd.Flags().StringVarP(&resource, "resource", "r", "", "URL for remote S3")
+	initCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for remote S3")
+	initCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for remote S3")
 }
