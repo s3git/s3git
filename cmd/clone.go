@@ -17,7 +17,10 @@
 package cmd
 
 import (
+	"os"
 	"fmt"
+	"strings"
+	"path/filepath"
 
 	"github.com/s3git/s3git-go"
 	"github.com/cheggaaa/pb"
@@ -26,12 +29,38 @@ import (
 
 // cloneCmd represents the clone command
 var cloneCmd = &cobra.Command{
-	Use:   "clone",
+	Use:   "clone [resource]",
 	Short: "Clone a repository into a new directory",
 	Long: "Clone a repository into a new directory",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		fmt.Println("Cloning into ...")
+		if len(args) == 0 {
+			er("Missing resource to clone from")
+		}
+
+		parts := strings.Split(args[0], "//")
+		if len(parts) != 2 {
+			er(fmt.Sprintf("Bad resource for cloning (missing '//' separator): %s", args[0]))
+		}
+
+		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			er(err)
+		}
+
+		dir += "/" + parts[1]
+
+		// Check whether directory to clone into does not yet exist -- abort otherwise
+		if _, err := os.Stat(dir); err == nil {
+			er(fmt.Sprintf("Cannot clone into existing directory: %s", dir))
+		}
+
+		// Output directory and create it
+		fmt.Println("Cloning into", dir)
+		err = os.MkdirAll(dir, os.ModePerm)
+		if err != nil {
+			er(err)
+		}
 
 		var barDownloading, barProcessing *pb.ProgressBar
 
@@ -55,15 +84,20 @@ var cloneCmd = &cobra.Command{
 			}
 		}
 
-		_, err := s3git.Clone("s3://s3git-100m", ".", progressDownload, progressProcessing)
+		repo, err := s3git.Clone(args[0], dir, progressDownload, progressProcessing)
 		if err != nil {
 			er(err)
 		}
 
-		fmt.Println("Done. Totalling 97974067 objects")
+		stats, err := repo.Statistics()
+		fmt.Printf("Done. Totalling %d objects.\n", stats.Objects)
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(cloneCmd)
+
+	// Add local message flags
+	cloneCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for S3 remote")
+	cloneCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for S3 remote")
 }
