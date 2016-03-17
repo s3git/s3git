@@ -26,8 +26,8 @@ import (
 // statusCmd represents the status command
 var statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Show changes to repository",
-	Long: "Show changes to repository",
+	Short: "Show changes in repository",
+	Long: "Show changes in repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		repo, err := s3git.OpenRepository(".")
