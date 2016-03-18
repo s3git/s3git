@@ -32,5 +32,5 @@ var sumCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.AddCommand(sumCmd)
+	//RootCmd.AddCommand(sumCmd)
 }
