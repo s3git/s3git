@@ -95,7 +95,7 @@ var cloneCmd = &cobra.Command{
 		}
 
 		stats, err := repo.Statistics()
-		fmt.Printf("Done. Totaling %d objects.\n", humanize.Comma(int64(stats.Objects)))
+		fmt.Printf("Done. Totaling %s objects.\n", humanize.Comma(int64(stats.Objects)))
 	},
 }
 

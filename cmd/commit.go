@@ -44,8 +44,8 @@ var commitCmd = &cobra.Command{
 		if nothing {
 			fmt.Println("Nothing to commit")
 		} else {
-			fmt.Printf("[master %s]\n", key)
-			fmt.Printf("X files added, Y files removed\n")
+			fmt.Printf("[commit %s]\n", key)
+			//fmt.Printf("X files added, Y files removed\n")
 		}
 	},
 }
@@ -55,4 +55,7 @@ func init() {
 
 	// Add local message flags
 	commitCmd.Flags().StringVarP(&message, "message", "m", "", "Message for the commit")
+	//commitCmd.Flags().StringVarP(&message, "all", "a", "", "Add all parent commits")
+
+	// Use --all flags to include all top most commits as parents, or explicitly specify one or more on the command line
 }
