@@ -28,7 +28,6 @@ Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s
 
 ```
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
-$ mv s3git-linux-amd64 s3git
 $ chmod +x s3git
 $ ./s3git
 ```
@@ -43,10 +42,8 @@ Example workflow
 
 Here is a simple workflow to create a new repository and populate it with some data:
 ```
-$ mkdir s3git_repo
-$ cd s3git_repo
 $ s3git init
-Initialized empty s3git repository in .../test/s3git_repo
+Initialized empty s3git repository in ...
 $ echo "hello s3git" | s3git add
 Added: 18e622875a89cede0d7019b2c8afecf8928c21eac18ec51e38a8e6b829b82c3ef306dec34227929fa77b1c7c329b3d4e50ed9e72dc4dc885be0932d3f28d7053
 $ s3git add "*.mp4"
