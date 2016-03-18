@@ -55,12 +55,14 @@ Push to cloud storage
 ---------------------
 
 ```
-$ s3git remote add "primary" -r s3://yourbucket -a "YOUR_ACCESS_KEY" -s "YOUR_SECRET_KEY"
+$ s3git remote add "primary" -r s3://s3git-playground -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 $ s3git push
 $ s3git cat 18e6
 hello s3git
 ```
 
+_Note: Do not store any important info in the s3git-playground bucket. It will be auto-deleted within 24-hours._
+ 
 Clone the YFCC100M dataset
 --------------------------
 
