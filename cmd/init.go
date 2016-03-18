@@ -18,7 +18,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"github.com/spf13/cobra"
 	"github.com/s3git/s3git-go"
@@ -35,7 +34,15 @@ var initCmd = &cobra.Command{
 	Long: "Create an empty repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		// TODO: Check whether not already initialized -- abort if so
+
+		var dir string
+		var err error
+		if len(args) > 0 {
+			dir, err = filepath.Abs(filepath.Dir(args[0]))
+		} else {
+			dir, err = filepath.Abs(filepath.Dir("."))
+		}
 		if err != nil {
 			er(err)
 		}
