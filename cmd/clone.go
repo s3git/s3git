@@ -25,6 +25,7 @@ import (
 	"github.com/s3git/s3git-go"
 	"github.com/cheggaaa/pb"
 	"github.com/spf13/cobra"
+	"github.com/dustin/go-humanize"
 )
 
 // cloneCmd represents the clone command
@@ -90,7 +91,7 @@ var cloneCmd = &cobra.Command{
 		}
 
 		stats, err := repo.Statistics()
-		fmt.Printf("Done. Totalling %d objects.\n", stats.Objects)
+		fmt.Printf("Done. Totaling %d objects.\n", humanize.Comma(int64(stats.Objects)))
 	},
 }
 
