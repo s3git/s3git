@@ -9,7 +9,29 @@ Exactly like git, s3git does not require any server-side components, just downlo
 
 Download binaries
 -----------------
-To follow.
+
+**DISCLAIMER: These are PRE-RELEASE binaries -- use at your own peril for now**
+
+### OSX
+
+Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64)
+
+```
+$ wget -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
+$ chmod +x s3git
+$ ./s3git
+```
+
+### Linux
+
+Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64)
+
+```
+$ wget -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
+$ mv s3git-linux-amd64 s3git
+$ chmod +x s3git
+$ ./s3git
+```
 
 Building from source
 --------------------
@@ -32,7 +54,7 @@ Push to cloud storage
 ---------------------
 
 ```
-$ s3git remote add "primary" -r s3://mybucket -a "ACCESSKEY" -s "SECRETKEY"
+$ s3git remote add "primary" -r s3://yourbucket -a "YOUR_ACCESS__KEY" -s "YOUR_SECRET__KEY"
 $ s3git push
 ```
 
@@ -42,15 +64,18 @@ Clone the YFCC100M dataset
 Clone a large repo with 100 million files totaling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space (takes several minutes):
 
 ```
-$ s3git clone s3://s3git-100m-usw2
+$ s3git clone s3://s3git-100m -a "AKIAI26TSIF6JIMMDSPQ" -s "5NvshAhI0KMz5Gbqkp7WNqXYlnjBjkf9IaJD75x7"
 Cloning into ...
-Done. Totalling 97345456 objects.
+Done. Totaling 97,345,456 objects.
+$ cd s3git-100m
 $ s3git ls 123456
 |100 kB| 12345649755b9f489df2470838a76c9df1d4ee85e864b15cf328441bd12fdfc23d5b95f8abffb9406f4cdf05306b082d3773f0f05090766272e2e8c8b8df5997
 |100 kB| 123456629a711c83c28dc63f0bc77ca597c695a19e498334a68e4236db18df84a2cdd964180ab2fcf04cbacd0f26eb345e09e6f9c6957a8fb069d558cadf287e
 |100 kB| 123456675eaecb4a2984f2849d3b8c53e55dd76102a2093cbca3e61668a3dd4e8f148a32c41235ab01e70003d4262ead484d9158803a1f8d74e6acad37a7a296
 |100 kB| 123456e6c21c054744742d482960353f586e16d33384f7c42373b908f7a7bd08b18768d429e01a0070fadc2c037ef83eef27453fc96d1625e704dd62931be2d1
 $ s3git cat cafebad > olympic.jpg
+$ s3git ls | wc -l
+97345456
 ```
 
 And collaborate
