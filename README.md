@@ -17,7 +17,7 @@ Download binaries
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64)
 
 ```
-$ wget -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
+$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
 $ chmod +x s3git
 $ ./s3git
 ```
@@ -27,7 +27,7 @@ $ ./s3git
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64)
 
 ```
-$ wget -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
+$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
 $ mv s3git-linux-amd64 s3git
 $ chmod +x s3git
 $ ./s3git
@@ -43,19 +43,25 @@ Example workflow
 
 Here is a simple workflow to create a new repository and populate it with some data:
 ```
+$ mkdir s3git_repo
+$ cd s3git_repo
 $ s3git init
+Initialized empty s3git repository in .../test/s3git_repo
 $ echo "hello s3git" | s3git add
+Added: 18e622875a89cede0d7019b2c8afecf8928c21eac18ec51e38a8e6b829b82c3ef306dec34227929fa77b1c7c329b3d4e50ed9e72dc4dc885be0932d3f28d7053
 $ s3git add "*.mp4"
 $ s3git commit -m "My first commit"
-$ s3git log
+$ s3git log --pretty
 ```
 
 Push to cloud storage
 ---------------------
 
 ```
-$ s3git remote add "primary" -r s3://yourbucket -a "YOUR_ACCESS__KEY" -s "YOUR_SECRET__KEY"
+$ s3git remote add "primary" -r s3://yourbucket -a "YOUR_ACCESS_KEY" -s "YOUR_SECRET_KEY"
 $ s3git push
+$ s3git cat 18e6
+hello s3git
 ```
 
 Clone the YFCC100M dataset
