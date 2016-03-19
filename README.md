@@ -44,9 +44,12 @@ Here is a simple workflow to create a new repository and populate it with some d
 ```sh
 $ s3git init
 Initialized empty s3git repository in ...
+$ # Just stream in some text
 $ echo "hello s3git" | s3git add
 Added: 18e622875a89cede0d7019b2c8afecf8928c21eac18ec51e38a8e6b829b82c3ef306dec34227929fa77b1c7c329b3d4e50ed9e72dc4dc885be0932d3f28d7053
+$ # Add some more files
 $ s3git add "*.mp4"
+$ # Commit and log
 $ s3git commit -m "My first commit"
 $ s3git log --pretty
 ```
@@ -55,8 +58,10 @@ Push to cloud storage
 ---------------------
 
 ```sh
+$ # Add remote back end and push to it
 $ s3git remote add "primary" -r s3://s3git-playground -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 $ s3git push
+$ # Read back content
 $ s3git cat 18e6
 hello s3git
 ```
@@ -73,12 +78,14 @@ $ s3git clone s3://s3git-100m -a "AKIAI26TSIF6JIMMDSPQ" -s "5NvshAhI0KMz5Gbqkp7W
 Cloning into ...
 Done. Totaling 97,974,749 objects.
 $ cd s3git-100m
+$ # List all files starting with '123456'
 $ s3git ls 123456
 12345649755b9f489df2470838a76c9df1d4ee85e864b15cf328441bd12fdfc23d5b95f8abffb9406f4cdf05306b082d3773f0f05090766272e2e8c8b8df5997
 123456629a711c83c28dc63f0bc77ca597c695a19e498334a68e4236db18df84a2cdd964180ab2fcf04cbacd0f26eb345e09e6f9c6957a8fb069d558cadf287e
 123456675eaecb4a2984f2849d3b8c53e55dd76102a2093cbca3e61668a3dd4e8f148a32c41235ab01e70003d4262ead484d9158803a1f8d74e6acad37a7a296
 123456e6c21c054744742d482960353f586e16d33384f7c42373b908f7a7bd08b18768d429e01a0070fadc2c037ef83eef27453fc96d1625e704dd62931be2d1
 $ s3git cat cafebad > olympic.jpg
+$ # List and count total nr of files
 $ s3git ls | wc -l
 97974749
 ```
