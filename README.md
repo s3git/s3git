@@ -96,7 +96,7 @@ Fork that repo
 Below is an example for `alice` and `bob` working together on a repository.
 
 ```sh
-$ mkdir alice
+$ mkdir alice && cd alice
 alice $ s3git clone s3://s3git-spoon-knife -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 Cloning into .../alice/s3git-spoon-knife
 Done. Totaling 0 objects.
@@ -115,6 +115,7 @@ alice $ s3git push
 Clone it again as `bob` on a different computer/different directory/different universe:
  
 ```sh
+$ mkdir bob && cd bob
 bob $ s3git clone s3://s3git-spoon-knife -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 Cloning into .../bob/s3git-spoon-knife
 Done. Totaling 10 objects.
