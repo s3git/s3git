@@ -44,7 +44,7 @@ var cloneCmd = &cobra.Command{
 			er(fmt.Sprintf("Bad resource for cloning (missing '//' separator): %s", args[0]))
 		}
 
-		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		dir, err := filepath.Abs(filepath.Dir("."))
 		if err != nil {
 			er(err)
 		}
