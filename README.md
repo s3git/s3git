@@ -104,7 +104,7 @@ alice $ cd s3git-spoon-knife
 alice $ # add a file filled with zeros
 alice $ dd if=/dev/zero count=1 | s3git add
 Added: 3ad6df690177a56092cb1ac7e9690dcabcac23cf10fee594030c7075ccd9c5e38adbaf58103cf573b156d114452b94aa79b980d9413331e22a8c95aa6fb60f4e
-alice $ # add 9 more files with random content
+alice $ # add 9 more files (with random content)
 alice $ for n in {1..9}; do dd if=/dev/urandom count=1 | s3git add; done
 alice $ # commit
 alice $ s3git commit -m "Commit from alice"
@@ -125,7 +125,7 @@ bob $ s3git cat 3ad6 | hexdump
 00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
 *
 00000200
-bob $ # add another 10 files with random content
+bob $ # add another 10 files
 bob $ for n in {1..10}; do dd if=/dev/urandom count=1 | s3git add; done
 bob $ # commit
 bob $ s3git commit -m "Commit from bob"
