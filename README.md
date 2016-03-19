@@ -214,9 +214,9 @@ s3git is released under the Apache License v2.0. You can find the complete text 
 FAQ
 ---
 
-**Q** Do you support encryption?
-**A** Simply encrypt it before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.
-**Q** Do you support zipping?
-**A** Simply zip it before streaming into `s3git add`, eg pipe it through `zip -r - .` or similar.
-**Q** Why don't you provide a FUSE interface?
-**A** Supporting FUSE would mean introducing a lot of complexity related to POSIX which we would rather avoid.
+**Q** Do you support encryption?  
+**A** Simply encrypt it before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.  
+**Q** Do you support zipping?  
+**A** Simply zip it before streaming into `s3git add`, eg pipe it through `zip -r - .` or similar.  
+**Q** Why don't you provide a FUSE interface?  
+**A** Supporting FUSE would mean introducing a lot of complexity related to POSIX which we would rather avoid.  
