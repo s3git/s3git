@@ -117,7 +117,7 @@ bob $ s3git cat 3ad6 | hexdump
 00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
 *
 00000200
-bob $ # add 10 files with random content
+bob $ # add another 10 files with random content
 bob $ for n in {1..10}; do dd if=/dev/urandom count=1 | s3git add; done
 bob $ # commit
 bob $ s3git commit -m "Commit from bob"
@@ -134,6 +134,8 @@ alice $ s3git log --pretty
 3f67a4789e2a820546745c6fa40307aa490b7167f7de770f118900a28e6afe8d3c3ec8d170a19977cf415d6b6c5acb78d7595c825b39f7c8b20b471a84cfbee0 Commit from bob
 a48cf36af2211e350ec2b05c98e9e3e63439acd1e9e01a8cb2b46e0e0d65f1625239bd1f89ab33771c485f3e6f1d67f119566523a1034e06adc89408a74c4bb3 Commit from alice
 ```
+
+_Note: Do not store any important info in the s3git-spoon-fork bucket. It will be auto-deleted within 24-hours._
 
 Happy forking!
 
