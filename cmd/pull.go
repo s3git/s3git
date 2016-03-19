@@ -54,6 +54,8 @@ var pullCmd = &cobra.Command{
 
 		if barPulling == nil {
 			fmt.Println("Already up-to-date.")
+		} else {
+			outputStats(repo)
 		}
 	},
 }

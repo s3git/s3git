@@ -94,9 +94,16 @@ var cloneCmd = &cobra.Command{
 			er(err)
 		}
 
-		stats, err := repo.Statistics()
-		fmt.Printf("Done. Totaling %s objects.\n", humanize.Comma(int64(stats.Objects)))
+		outputStats(repo)
 	},
+}
+
+func outputStats(repo *s3git.Repository) {
+
+	stats, err := repo.Statistics()
+	if err == nil {
+		fmt.Printf("Done. Totaling %s objects.\n", humanize.Comma(int64(stats.Objects)))
+	}
 }
 
 func init() {
