@@ -16,7 +16,7 @@ Download binaries
 
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64)
 
-```
+```sh
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
 $ chmod +x s3git
 $ ./s3git
@@ -26,7 +26,7 @@ $ ./s3git
 
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64)
 
-```
+```sh
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
 $ chmod +x s3git
 $ ./s3git
@@ -41,7 +41,7 @@ Example workflow
 ----------------
 
 Here is a simple workflow to create a new repository and populate it with some data:
-```
+```sh
 $ s3git init
 Initialized empty s3git repository in ...
 $ echo "hello s3git" | s3git add
@@ -54,7 +54,7 @@ $ s3git log --pretty
 Push to cloud storage
 ---------------------
 
-```
+```sh
 $ s3git remote add "primary" -r s3://s3git-playground -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 $ s3git push
 $ s3git cat 18e6
@@ -68,7 +68,7 @@ Clone the YFCC100M dataset
 
 Clone a large repo with 100 million files totaling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space (takes several minutes):
 
-```
+```sh
 $ s3git clone s3://s3git-100m -a "AKIAI26TSIF6JIMMDSPQ" -s "5NvshAhI0KMz5Gbqkp7WNqXYlnjBjkf9IaJD75x7"
 Cloning into ...
 Done. Totaling 97,974,749 objects.
@@ -83,18 +83,55 @@ $ s3git ls | wc -l
 97974749
 ```
 
-And collaborate
----------------
+Fork that repo
+--------------
 
-Continuing as `alice` from the example above, clone it again as `bob` on a different computer or in a different directory
+Below is an example for `alice` and `bob` working together on a repository.
 
-```
-alice $
+```sh
+$ mkdir alice
+alice $ s3git clone s3://s3git-spoon-knife -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
+alice $ cd s3git-spoon-knife
+alice $ # add a file filled with zeros
+alice $ dd if=/dev/zero count=1 | s3git add
+Added: 3ad6df690177a56092cb1ac7e9690dcabcac23cf10fee594030c7075ccd9c5e38adbaf58103cf573b156d114452b94aa79b980d9413331e22a8c95aa6fb60f4e
+alice $ # add 9 more files with random content
+alice $ for n in {1..9}; do dd if=/dev/urandom count=1 | s3git add; done
+alice $ # commit
+alice $ s3git commit -m "Commit from alice"
+alice $ # and push
+alice $ s3git push
 ```
 
+Clone it again as `bob` on a different computer/different directory/different universe:
+ 
+```sh
+bob $ s3git clone s3://s3git-spoon-knife -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
+bob $ cd s3git-spoon-knife
+bob $ s3git ls | wc -l
+10
+bob $ s3git cat 3ad6 | hexdump -C
+
+bob $ # add 10 files with random content
+bob $ for n in {1..10}; do dd if=/dev/urandom count=1 | s3git add; done
+bob $ # commit
+bob $ s3git commit -m "Commit from bob"
+bob $ # and push back
+bob $ s3git push
 ```
-bob $
+
+Swtich back to `alice` again to pull the new content:
+
+```sh
+alice $ s3git pull
+alice $ s3git ls | wc -l
+20
+alice $ s3git log --pretty
+3f67a4789e2a820546745c6fa40307aa490b7167f7de770f118900a28e6afe8d3c3ec8d170a19977cf415d6b6c5acb78d7595c825b39f7c8b20b471a84cfbee0  Commit from bob
+a48cf36af2211e350ec2b05c98e9e3e63439acd1e9e01a8cb2b46e0e0d65f1625239bd1f89ab33771c485f3e6f1d67f119566523a1034e06adc89408a74c4bb3  Commit from alice
 ```
+
+Happy forking!
 
 Contributions
 -------------
