@@ -108,10 +108,10 @@ Clone it again as `bob` on a different computer/different directory/different un
 ```sh
 bob $ s3git clone s3://s3git-spoon-knife -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
 bob $ cd s3git-spoon-knife
-bob $ s3git ls | wc -l
-10
 bob $ s3git cat 3ad6 | hexdump -C
-
+00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+*
+00000200
 bob $ # add 10 files with random content
 bob $ for n in {1..10}; do dd if=/dev/urandom count=1 | s3git add; done
 bob $ # commit
@@ -124,11 +124,9 @@ Swtich back to `alice` again to pull the new content:
 
 ```sh
 alice $ s3git pull
-alice $ s3git ls | wc -l
-20
 alice $ s3git log --pretty
-3f67a4789e2a820546745c6fa40307aa490b7167f7de770f118900a28e6afe8d3c3ec8d170a19977cf415d6b6c5acb78d7595c825b39f7c8b20b471a84cfbee0  Commit from bob
-a48cf36af2211e350ec2b05c98e9e3e63439acd1e9e01a8cb2b46e0e0d65f1625239bd1f89ab33771c485f3e6f1d67f119566523a1034e06adc89408a74c4bb3  Commit from alice
+3f67a4789e2a820546745c6fa40307aa490b7167f7de770f118900a28e6afe8d3c3ec8d170a19977cf415d6b6c5acb78d7595c825b39f7c8b20b471a84cfbee0 Commit from bob
+a48cf36af2211e350ec2b05c98e9e3e63439acd1e9e01a8cb2b46e0e0d65f1625239bd1f89ab33771c485f3e6f1d67f119566523a1034e06adc89408a74c4bb3 Commit from alice
 ```
 
 Happy forking!
