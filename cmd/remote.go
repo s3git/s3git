@@ -37,6 +37,8 @@ var remoteAddCmd = &cobra.Command{
 
 		if len(args) == 0 {
 			er("Name for remote must be specified")
+		} else if resource == "" {
+			er("Resource name for remote must be specified")
 		}
 
 		repo, err := s3git.OpenRepository(".")
@@ -44,14 +46,35 @@ var remoteAddCmd = &cobra.Command{
 			er(err)
 		}
 
-		if resource == "" {
-			er("Name for remote must be specified")
-		} else {
-			err := repo.RemoteAdd(args[0], resource, accessKey, secretKey)
-			if err != nil {
-				er(err)
-			}
+		options := []s3git.RemoteOptions{}
+		options = append(options, s3git.RemoteOptionSetEndpoint(endpoint))
+
+		err = repo.RemoteAdd(args[0], resource, accessKey, secretKey, options...)
+		if err != nil {
+			er(err)
 		}
+	},
+}
+
+var remoteRemoveCmd = &cobra.Command{
+	Use:   "remove [name]",
+	Short: "Remove a remote repository",
+	Long: "Remove a remote repository",
+	Run: func(cmd *cobra.Command, args []string) {
+
+		if len(args) == 0 {
+			er("Name for remote must be specified")
+		}
+
+		_ /*repo*/, err := s3git.OpenRepository(".")
+		if err != nil {
+			er(err)
+		}
+
+		//err = repo.RemoteRemove(args[0])
+		//if err != nil {
+		//	er(err)
+		//}
 	},
 }
 
@@ -80,11 +103,13 @@ var remoteShowCmd = &cobra.Command{
 func init() {
 	RootCmd.AddCommand(remoteCmd)
 	remoteCmd.AddCommand(remoteAddCmd)
+	remoteCmd.AddCommand(remoteRemoveCmd)
 	remoteCmd.AddCommand(remoteShowCmd)
 
 	// Add local message flags
 	remoteAddCmd.Flags().StringVarP(&resource, "resource", "r", "", "URL for remote S3")
 	remoteAddCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for remote S3")
 	remoteAddCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for remote S3")
+	remoteAddCmd.Flags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for remote S3")
 }
 

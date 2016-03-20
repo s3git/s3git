@@ -26,6 +26,7 @@ import (
 var resource string
 var accessKey string
 var secretKey string
+var endpoint string
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{

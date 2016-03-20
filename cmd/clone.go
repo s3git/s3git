@@ -88,6 +88,7 @@ var cloneCmd = &cobra.Command{
 		options := []s3git.CloneOptions{}
 		options = append(options, s3git.CloneOptionSetAccessKey(accessKey))
 		options = append(options, s3git.CloneOptionSetSecretKey(secretKey))
+		options = append(options, s3git.CloneOptionSetEndpoint(endpoint))
 
 		repo, err := s3git.Clone(args[0], dir, progressDownload, progressProcessing, options...)
 		if err != nil {
@@ -110,6 +111,8 @@ func init() {
 	RootCmd.AddCommand(cloneCmd)
 
 	// Add local message flags
+	// TODO: 'Duplicate' flags for remote add command -- refactor into single definition
 	cloneCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for S3 remote")
 	cloneCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for S3 remote")
+	cloneCmd.Flags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for S3 remote")
 }
