@@ -147,6 +147,37 @@ _Note: Do not store any important info in the s3git-spoon-knife bucket. It will 
 
 Happy forking!
 
+<a name="minio"></a> Integration with Minio
+-------------------------------------------
+
+Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9002. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
+
+```sh
+$ s3git init 
+$ s3git remote add "primary" -r s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9002"
+$ echo "hello minio" | s3git add
+Added: c7bb516db796df8dcc824aec05db911031ab3ac1e5ff847838065eeeb52d4410b4d57f8df2e55d14af0b7b1d28362de1176cd51892d7cbcaaefb2cd3f616342f
+$ s3git commit -m "Commit for minio test"
+[commit 6eb708ec7dfd75d9d6a063e2febf16bab3c7a163e203fc677c8a9178889bac012d6b3fcda56b1eb160b1be7fa56eb08985422ed879f220d42a0e6ec80c5735ea]
+$ s3git push
+Pushing 1 / 1 [==============================================================================================================================] 100.00 % 0
+```
+
+and clone it 
+
+```sh
+$ s3git clone s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9002"
+Cloning into .../s3git-test
+Done. Totaling 1 object.
+$ cd s3git-test/
+$ s3git ls
+c7bb516db796df8dcc824aec05db911031ab3ac1e5ff847838065eeeb52d4410b4d57f8df2e55d14af0b7b1d28362de1176cd51892d7cbcaaefb2cd3f616342f
+$ s3git cat c7bb
+hello minio
+$ s3git log --pretty
+6eb708ec7dfd75d9d6a063e2febf16bab3c7a163e203fc677c8a9178889bac012d6b3fcda56b1eb160b1be7fa56eb08985422ed879f220d42a0e6ec80c5735ea Commit for minio test
+```
+
 Contributions
 -------------
 
