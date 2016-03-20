@@ -143,7 +143,7 @@ alice $ s3git log --pretty
 a48cf36af2211e350ec2b05c98e9e3e63439acd1e9e01a8cb2b46e0e0d65f1625239bd1f89ab33771c485f3e6f1d67f119566523a1034e06adc89408a74c4bb3 Commit from alice
 ```
 
-_Note: Do not store any important info in the s3git-spoon-fork bucket. It will be auto-deleted within 24-hours._
+_Note: Do not store any important info in the s3git-spoon-knife bucket. It will be auto-deleted within 24-hours._
 
 Happy forking!
 
