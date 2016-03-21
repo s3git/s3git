@@ -19,7 +19,8 @@ Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s
 ```sh
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
 $ chmod +x s3git
-$ ./s3git
+$ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
+$ s3git
 ```
 
 ### Linux
@@ -29,7 +30,8 @@ Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s
 ```sh
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
 $ chmod +x s3git
-$ ./s3git
+$ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
+$ s3git
 ```
 
 Building from source
