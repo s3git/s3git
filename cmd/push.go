@@ -55,7 +55,7 @@ var pushCmd = &cobra.Command{
 		}
 
 		if barPushing == nil {
-			fmt.Println("Already up-to-date.")
+			fmt.Println("Everything up-to-date.")
 		}
 	},
 }
