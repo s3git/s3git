@@ -17,6 +17,7 @@ Download binaries
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64)
 
 ```sh
+$ mkdir s3git && cd s3git
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-darwin-amd64
 $ chmod +x s3git
 $ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
@@ -28,6 +29,7 @@ $ s3git
 Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64)
 
 ```sh
+$ mkdir s3git && cd s3git
 $ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.0/s3git-linux-amd64
 $ chmod +x s3git
 $ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
@@ -44,6 +46,7 @@ Example workflow
 
 Here is a simple workflow to create a new repository and populate it with some data:
 ```sh
+$ mkdir s3git-repo && cd s3git-repo
 $ s3git init
 Initialized empty s3git repository in ...
 $ # Just stream in some text
@@ -73,7 +76,9 @@ _Note: Do not store any important info in the s3git-playground bucket. It will b
 Clone the YFCC100M dataset
 --------------------------
 
-Clone a large repo with 100 million files totaling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space (takes several minutes):
+Clone a large repo with 100 million files totaling 11.5 TB in size ([Multimedia Commons](http://aws.amazon.com/public-data-sets/multimedia-commons/)), yet requiring only 7 GB local disk space.
+
+_(Note that this takes about **7 minutes** on an SSD-equipped MacBook Pro with 500 Mbit/s download connection so for less powerful hardware you may want to skip to the next section (or if you lack 7 GB local disk space, try a `df -h .` first). Then again it is quite a few files...)_
 
 ```sh
 $ s3git clone s3://s3git-100m -a "AKIAI26TSIF6JIMMDSPQ" -s "5NvshAhI0KMz5Gbqkp7WNqXYlnjBjkf9IaJD75x7"
