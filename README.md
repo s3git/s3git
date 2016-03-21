@@ -166,7 +166,6 @@ $ s3git remote add "primary" -r s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zu
 $ echo "hello minio" | s3git add
 Added: c7bb516db796df8dcc824aec05db911031ab3ac1e5ff847838065eeeb52d4410b4d57f8df2e55d14af0b7b1d28362de1176cd51892d7cbcaaefb2cd3f616342f
 $ s3git commit -m "Commit for minio test"
-[commit 6eb708ec7dfd75d9d6a063e2febf16bab3c7a163e203fc677c8a9178889bac012d6b3fcda56b1eb160b1be7fa56eb08985422ed879f220d42a0e6ec80c5735ea]
 $ s3git push
 Pushing 1 / 1 [==============================================================================================================================] 100.00 % 0
 ```
