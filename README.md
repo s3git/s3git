@@ -160,6 +160,7 @@ Happy forking!
 Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9002. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
 
 ```sh
+$ mkdir minio-test && cd minio-test
 $ s3git init 
 $ s3git remote add "primary" -r s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9002"
 $ echo "hello minio" | s3git add
