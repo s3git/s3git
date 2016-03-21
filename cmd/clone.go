@@ -103,8 +103,15 @@ func outputStats(repo *s3git.Repository) {
 
 	stats, err := repo.Statistics()
 	if err == nil {
-		fmt.Printf("Done. Totaling %s objects.\n", humanize.Comma(int64(stats.Objects)))
+		fmt.Printf("Done. Totaling %s object%s.\n", humanize.Comma(int64(stats.Objects)), pluralize(stats.Objects))
 	}
+}
+
+func pluralize(number uint64) string {
+	if number != 1 {
+		return "s"
+	}
+	return ""
 }
 
 func init() {
