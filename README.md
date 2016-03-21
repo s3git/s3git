@@ -140,7 +140,7 @@ bob $ # and push back
 bob $ s3git push
 ```
 
-Swtich back to `alice` again to pull the new content:
+Switch back to `alice` again to pull the new content:
 
 ```sh
 alice $ s3git pull
@@ -154,8 +154,8 @@ _Note: Do not store any important info in the s3git-spoon-knife bucket. It will 
 
 Happy forking!
 
-<a name="minio"></a> Integration with Minio
--------------------------------------------
+Integration with Minio
+----------------------
 
 Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9002. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
 
