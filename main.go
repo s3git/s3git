@@ -17,9 +17,19 @@
 package main
 
 import (
+	"os"
+	"fmt"
 	"github.com/s3git/s3git/cmd"
 )
 
+var version = ""
+
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "version" && version != "" {
+		fmt.Println(version)
+		os.Exit(0)
+	}
+
+	//TODO: Investigate: do we set the max procs somewhere?
 	cmd.Execute()
 }
