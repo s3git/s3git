@@ -64,5 +64,5 @@ func init() {
 	RootCmd.AddCommand(pushCmd)
 
 	// Add local message flags
-	pushCmd.Flags().BoolVar(&hydrated, "hydrated", false, "Store in hydrated (concatenated) format at remote")
+	pushCmd.Flags().BoolVar(&hydrated, "hydrate", false, "Store in hydrated (concatenated) format at remote")
 }
