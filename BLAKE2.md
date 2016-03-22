@@ -60,7 +60,7 @@ Cloud storage
 
 s3git allows you to commit your changes and push them into cloud storage like S3. There are two formats how to do this:
 
--  **deduplictated** (also called deduped)
+-  **deduplicated** (also called deduped)
 -  **hydrated** (or concatenated)
 
 Let's examine both in the following examples.
@@ -124,7 +124,7 @@ Also note that for encrypted content you might just as well store them hydrated 
 
 Now you may wonder that it is a bad idea to store different content under the same name as this might create confusion. When using a normal hashing algorithm (without tree-hashing support) that is the case, but for BLAKE2 this is not a problem.
 
-In order to determine whether a root hash stores a deduplicated object, the following must be true:
+In order to determine whether a root hash stores a deduped object, the following must be true:
 - The size needs to be a multiple of 64 bytes (which allows for a quick check), and
 - When hashed at level 1 and as last node it must return its own root hash.
 
