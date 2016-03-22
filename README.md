@@ -41,6 +41,11 @@ Building from source
 
 Unfortunately not yet possible due to missing SDK, stay tuned!
 
+BLAKE2 Tree Hashing
+-------------------
+
+Read [here](https://github.com/s3git/s3git/blob/master/BLAKE2.md) how s3git uses the BLAKE2 Tree hashing mode with interesting properties. 
+
 Example workflow
 ----------------
 
