@@ -250,15 +250,6 @@ Flags:
 Use "s3git [command] --help" for more information about a command.
 ```
 
-Use cases
----------
-
-```
-s3git commit "Holiday pictures"
-s3git commit "Photos from birthday"
-s3git log
-```
-
 License
 -------
 
@@ -268,8 +259,8 @@ FAQ
 ---
 
 **Q** Do you support encryption?  
-**A** Simply encrypt it before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.  
+**A** No. However it is trivial to encrypt data before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.  
 **Q** Do you support zipping?  
-**A** Simply zip it before streaming into `s3git add`, eg pipe it through `zip -r - .` or similar.  
+**A** No. Again it is trivial to zip it before streaming into `s3git add`, eg pipe it through `zip -r - .` or similar.  
 **Q** Why don't you provide a FUSE interface?  
 **A** Supporting FUSE would mean introducing a lot of complexity related to POSIX which we would rather avoid.  
