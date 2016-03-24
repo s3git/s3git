@@ -168,12 +168,12 @@ Happy forking!
 Integration with Minio
 ----------------------
 
-Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9002. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
+Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9000. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
 
 ```sh
 $ mkdir minio-test && cd minio-test
 $ s3git init 
-$ s3git remote add "primary" -r s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9002"
+$ s3git remote add "primary" -r s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9000"
 $ echo "hello minio" | s3git add
 Added: c7bb516db796df8dcc824aec05db911031ab3ac1e5ff847838065eeeb52d4410b4d57f8df2e55d14af0b7b1d28362de1176cd51892d7cbcaaefb2cd3f616342f
 $ s3git commit -m "Commit for minio test"
@@ -184,7 +184,7 @@ Pushing 1 / 1 [=================================================================
 and clone it 
 
 ```sh
-$ s3git clone s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9002"
+$ s3git clone s3://s3git-test -a "Q3AM3UQ867SPQQA43P2F" -s "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG" -e "https://play.minio.io:9000"
 Cloning into .../s3git-test
 Done. Totaling 1 object.
 $ cd s3git-test/
