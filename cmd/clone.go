@@ -89,8 +89,10 @@ var cloneCmd = &cobra.Command{
 		options = append(options, s3git.CloneOptionSetAccessKey(accessKey))
 		options = append(options, s3git.CloneOptionSetSecretKey(secretKey))
 		options = append(options, s3git.CloneOptionSetEndpoint(endpoint))
+		options = append(options, s3git.CloneOptionSetDownloadProgress(progressDownload))
+		options = append(options, s3git.CloneOptionSetProcessingProgress(progressProcessing))
 
-		repo, err := s3git.Clone(args[0], dir, progressDownload, progressProcessing, options...)
+		repo, err := s3git.Clone(args[0], dir, options...)
 		if err != nil {
 			er(err)
 		}
