@@ -273,9 +273,7 @@ FAQ
 
 **Q** Is s3git compatible to git at the binary level?  
 **A** No. git is optimized for text content with very nice and powerful diffing and using compressed storage whereas s3git is more focused on large repos with primarily non-text blobs backed up cloud storage like S3.  
-**Q** Do you support encryption?  
-**A** No. However it is trivial to encrypt data before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.  
-**Q** Do you support zipping?  
-**A** No. Again it is trivial to zip it before streaming into `s3git add`, eg pipe it through `zip -r - .` or similar.  
+**Q** Do you support encryption and/or compression?  
+**A** Not yet, but we plan to add pluggable modules that can transform blobs before storing/fetching them. Transforming at the blob level prevents that unchanged blobs are also updated. Most transformations (compression and most encryption algorithms) use a transformation that also alter all bytes following the changed bytes.     
 **Q** Why don't you provide a FUSE interface?  
 **A** Supporting FUSE would mean introducing a lot of complexity related to POSIX which we would rather avoid.  
