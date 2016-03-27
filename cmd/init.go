@@ -18,6 +18,9 @@ package cmd
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
+	"path"
 	"path/filepath"
 	"github.com/spf13/cobra"
 	"github.com/s3git/s3git-go"
@@ -35,8 +38,7 @@ var initCmd = &cobra.Command{
 	Long: "Create an empty repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		// TODO: Check whether not already initialized -- abort if so
-
+        // Determine the directory where the repository should be created
 		var dir string
 		var err error
 		if len(args) > 0 {
@@ -48,6 +50,15 @@ var initCmd = &cobra.Command{
 			er(err)
 		}
 
+        // The directory should either not exist or be empty
+        // TODO: Obtain the ".s3git" name from the s3git-go config package
+        var repoDir = path.Join(dir, ".s3git")
+        files, err := ioutil.ReadDir(repoDir)
+        if os.IsNotExist(err) || len(files) > 0 {
+            er(fmt.Errorf("target directory %s already exists and is not empty", repoDir))
+        }
+
+        // Create the repository
 		repo, err := s3git.InitRepository(dir)
 		if err != nil {
 			er(err)
