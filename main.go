@@ -19,7 +19,7 @@ package main
 import (
 	"os"
 	"fmt"
-	"github.com/s3git/s3git/cmd"
+	"./cmd"
 )
 
 var version = ""
