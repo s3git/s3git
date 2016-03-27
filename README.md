@@ -41,7 +41,11 @@ $ s3git
 Building from source
 --------------------
 
-Unfortunately not yet possible due to missing SDK, stay tuned!
+Get both this repo and the s3git-go repo and, in the s3git directory, do as follows:
+
+```sh
+go install
+```
 
 BLAKE2 Tree Hashing
 -------------------
