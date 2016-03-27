@@ -44,7 +44,10 @@ Building from source
 Get both this repo and the s3git-go repo and, in the s3git directory, do as follows:
 
 ```sh
-go install
+$ go get -d github.com/s3git/s3git
+$ cd $GOPATH/src/github.com/s3git/s3git 
+$ go install
+$ s3git
 ```
 
 BLAKE2 Tree Hashing
