@@ -41,7 +41,7 @@ $ s3git
 Building from source
 --------------------
 
-Get both this repo and the s3git-go repo and, in the s3git directory, do as follows:
+Build instructions are as follows (see [install golang](https://github.com/minio/minio/blob/master/INSTALLGO.md) for setting up a working golang environment):
 
 ```sh
 $ go get -d github.com/s3git/s3git
