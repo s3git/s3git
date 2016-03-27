@@ -50,7 +50,7 @@ go install
 BLAKE2 Tree Hashing
 -------------------
 
-Read [here](https://github.com/s3git/s3git/blob/master/BLAKE2.md) how s3git uses the BLAKE2 Tree hashing mode with interesting properties. 
+Read [here](https://github.com/s3git/s3git/blob/master/BLAKE2.md) how s3git uses the BLAKE2 Tree hashing mode with interesting properties (and [here](https://github.com/s3git/s3git/blob/master/BLAKE2-and-Scalability.md) for info regarding BLAKE2 and scalability).
 
 Example workflow
 ----------------
