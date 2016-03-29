@@ -9,6 +9,17 @@ s3git is a simple CLI tool that allows you to create a *distributed*, *decentral
 
 Exactly like git, s3git does not require any server-side components, just download and run the executable. It imports the golang package [s3git-go](https://github.com/s3git/s3git-go) that can be used from other applications as well.
 
+Use cases for s3git
+-------------------
+
+- Build and Release Management
+- DevOps Scenarios
+- Data Consolidation
+- Analytics
+- Photo and Video storage
+
+See [use cases](https://github.com/s3git/s3git/blob/master/USECASES.md) for a detailed description of these use cases.
+
 Download binaries
 -----------------
 
