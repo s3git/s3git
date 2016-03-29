@@ -107,18 +107,18 @@ It will be obvious that the first object stores the first example whereas the se
 
 Both methods have their advantages and disadvantages as is listed in this table:
 
-|                  | Deduped | Hydrated |
-| ---------------- |:-------:| :-------:|
-| Deduplication    |    ✓    |          |
-| Direct streaming |         |     ✓    |
-| Rolling hash     |    ✓    |          |
-| Encryption       |    ✓    |     ✓    |
+|               | Deduped | Hydrated |
+| ------------- |:-------:| :-------:|
+| Deduplication |    ✓    |          |
+| Direct access |         |     ✓    |
+| Rolling hash  |    ✓    |          |
+| Encryption    |    ✓    |     ✓    |
 
 Deduplication obviously saves on storage and bandwidth costs as duplicate content is stored just once. s3git deduplicates at the repository level so it is not just 'file-level' or 'block-level' deduplication but global data deduplication within a repository. When combined with rolling hashes it allows for even better data reduction levels and a nice level of resistance to content changes anywhere within the input streams. A future blog will elaborate on this.
 
-For certain content (like huge videos) the direct streaming feature of the hydrated format can be a nice benefit. It allows content to be streamed directly out of cloud storage without the need for any intermediate server step that glues the contents together.
+For certain content (like huge videos or input files for mapreduce jobs) the direct access feature of the hydrated format is a nice benefit. It allows content to be accessed and fetched directly out of cloud storage using a single (presigned) URL without the need for any intermediate server step that glues the leaf chunks together.
 
-Also note that for encrypted content you might just as well store them hydrated because the very nature of encryption avoids duplicate content (or your encryption is broken...).
+Also note that for encrypted content you might just as well use the hydrated format since the very nature of encryption avoids duplicate content (or your encryption is broken...).
 
 ### Wait, bad idea! Store different content under same name?!
 
