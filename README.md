@@ -49,6 +49,14 @@ $ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded t
 $ s3git
 ```
 
+### Windows
+
+Download `s3git.exe` from [https://github.com/s3git/s3git/releases/download/v0.9.0/s3git.exe](https://github.com/s3git/s3git/releases/download/v0.9.0/s3git.exe)
+
+```
+C:\Users\Username\Downloads> s3git.exe
+```
+
 Building from source
 --------------------
 
