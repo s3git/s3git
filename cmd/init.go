@@ -28,6 +28,9 @@ var accessKey string
 var secretKey string
 var endpoint string
 
+var leafSize uint32
+var maxRepoSize uint64
+
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
@@ -48,7 +51,11 @@ var initCmd = &cobra.Command{
 			er(err)
 		}
 
-		repo, err := s3git.InitRepository(dir)
+		options := []s3git.InitOptions{}
+		options = append(options, s3git.InitOptionSetLeafSize(leafSize))
+		options = append(options, s3git.InitOptionSetMaxRepoSize(maxRepoSize))
+
+		repo, err := s3git.InitRepository(dir, options...)
 		if err != nil {
 			er(err)
 		}
@@ -69,7 +76,6 @@ func init() {
 	RootCmd.AddCommand(initCmd)
 
 	// Add local message flags
-	initCmd.Flags().StringVarP(&resource, "resource", "r", "", "URL for remote S3")
-	initCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for remote S3")
-	initCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for remote S3")
+	initCmd.Flags().Uint32VarP(&leafSize, "leafsize", "l", 5*1024*1024, "Leaf size for nodes")
+	initCmd.Flags().Uint64VarP(&maxRepoSize, "maxreposize", "m", 25*1024*1024*1024, "Maximum disk space that repository will consume")
 }
