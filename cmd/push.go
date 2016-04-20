@@ -23,7 +23,7 @@ import (
 	"github.com/cheggaaa/pb"
 )
 
-var hydrated bool
+var hydrate bool
 
 // pushCmd represents the push command
 var pushCmd = &cobra.Command{
@@ -49,7 +49,7 @@ var pushCmd = &cobra.Command{
 			}
 		}
 
-		err = repo.Push(hydrated, progressPush)
+		err = repo.Push(hydrate, progressPush)
 		if err != nil {
 			er(err)
 		}
@@ -64,5 +64,5 @@ func init() {
 	RootCmd.AddCommand(pushCmd)
 
 	// Add local message flags
-	pushCmd.Flags().BoolVar(&hydrated, "hydrate", false, "Store in hydrated (concatenated) format at remote")
+	pushCmd.Flags().BoolVar(&hydrate, "hydrate", false, "Store in hydrated (original) format at remote")
 }
