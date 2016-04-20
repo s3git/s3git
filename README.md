@@ -196,7 +196,7 @@ You may be wondering about concurrent behaviour from
 Integration with Minio
 ----------------------
 
-Instead of S3 you can happily use the [Minio](https://minio.io) server, for example the public server at https://play.minio.io:9000. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
+Instead of S3 you can happily use the [Minio](https://github.com/minio/minio) server, for example the public server at https://play.minio.io:9000. Just make sure you have a bucket created using [mc](https://github.com/minio/mc) (example below uses `s3git-test`):
 
 ```sh
 $ mkdir minio-test && cd minio-test
