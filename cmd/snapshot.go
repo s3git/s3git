@@ -17,6 +17,7 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
 )
@@ -40,50 +41,81 @@ var snapshotCreateCmd = &cobra.Command{
 			er("Commit message for snapshot must be specified")
 		}
 
-		_/*repo*/, err := s3git.OpenRepository(".")
+		repo, err := s3git.OpenRepository(".")
 		if err != nil {
 			er(err)
 		}
 
-		//err = repo.SnapshotCreate()
-		//if err != nil {
-		//	er(err)
-		//}
+		key, nothing, err := repo.SnapshotCreate(args[0], message)
+		if err != nil {
+			er(err)
+		}
+		if nothing {
+			fmt.Println("No changes to snapshot")
+		} else {
+			fmt.Printf("[commit %s]\n", key)
+		}
 	},
 }
 
 var snapshotCheckoutCmd = &cobra.Command{
-	Use:   "checkout [commit] [directory]",
+	Use:   "checkout [directory] ([commit])",
 	Short: "Checkout a snapshot",
 	Long: "Checkout a snapshot",
+	Run: func(cmd *cobra.Command, args []string) {
+
+		// TODO: Partial checkout would be nice (eg specify path as filter)
+
+		if len(args) == 0 {
+			er("Directory for snapshot must be specified")
+		}
+
+		repo, err := s3git.OpenRepository(".")
+		if err != nil {
+			er(err)
+		}
+
+		var commit string
+		if len(args) == 2 {
+			commit = args[1]
+		}
+
+		err = repo.SnapshotCheckout(args[0], commit, hydrate)
+		if err != nil {
+			er(err)
+		}
+	},
+}
+
+var presignedUrls bool
+var jsonOutput bool
+
+var snapshotListCmd = &cobra.Command{
+	Use:   "ls ([commit])",
+	Short: "List a snapshot",
+	Long: "List a snapshot",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
 			er("Commit for snapshot must be specified")
 		}
 
-		_ /*repo*/, err := s3git.OpenRepository(".")
+		repo, err := s3git.OpenRepository(".")
 		if err != nil {
 			er(err)
 		}
 
-		//err = repo.RemoteRemove(args[0])
-		//if err != nil {
-		//	er(err)
-		//}
-	},
-}
+		var commit string
+		if len(args) == 1 {
+			commit = args[0]
+		}
 
-var snapshotListCmd = &cobra.Command{
-	Use:   "list [commit]",
-	Short: "List a snapshot",
-	Long: "List a snapshot",
-	Run: func(cmd *cobra.Command, args []string) {
-
-		_/*repo*/, err := s3git.OpenRepository(".")
+		// TODO: Dump result in JSON format
+		err = repo.SnapshotList(commit, presignedUrls)
 		if err != nil {
 			er(err)
 		}
+
 	},
 }
 
@@ -97,6 +129,35 @@ var snapshotLogCmd = &cobra.Command{
 		if err != nil {
 			er(err)
 		}
+
+		// TODO: Implement log
+	},
+}
+
+var snapshotStatusCmd = &cobra.Command{
+	Use:   "status [directory] ([commit])",
+	Short: "Show changes for snapshot",
+	Long: "Show changes for snapshot",
+	Run: func(cmd *cobra.Command, args []string) {
+
+		if len(args) == 0 {
+			er("Directory for snapshot must be specified")
+		}
+
+		repo, err := s3git.OpenRepository(".")
+		if err != nil {
+			er(err)
+		}
+
+		var commit string
+		if len(args) == 2 {
+			commit = args[1]
+		}
+
+		err = repo.SnapshotStatus(args[0], commit)
+		if err != nil {
+			er(err)
+		}
 	},
 }
 
@@ -106,7 +167,15 @@ func init() {
 	snapshotCmd.AddCommand(snapshotCheckoutCmd)
 	snapshotCmd.AddCommand(snapshotListCmd)
 	snapshotCmd.AddCommand(snapshotLogCmd)
+	snapshotCmd.AddCommand(snapshotStatusCmd)
 
-	// Add local message flags
+	// Local flags for create
 	snapshotCreateCmd.Flags().StringVarP(&message, "message", "m", "", "Message for the commit of create snapshot")
+
+	// Local flags for checkout
+	snapshotCheckoutCmd.Flags().BoolVar(&hydrate, "hydrate", false, "Checkout in hydrated (original) format")
+
+	// Local flags for list
+	snapshotListCmd.Flags().BoolVar(&presignedUrls, "presigned", false, "Generate presigned urls for direct access from S3")
+	snapshotListCmd.Flags().BoolVar(&presignedUrls, "json", false, "Output result in JSON")
 }
