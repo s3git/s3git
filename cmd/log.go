@@ -28,8 +28,8 @@ var oneline bool
 // logCmd represents the log command
 var logCmd = &cobra.Command{
 	Use:   "log",
-	Short: "Show commit logs",
-	Long: "Show commit logs for the repository",
+	Short: "Show commit log",
+	Long: "Show commit log for the repository",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		repo, err := s3git.OpenRepository(".")

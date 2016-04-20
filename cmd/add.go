@@ -59,6 +59,7 @@ var addCmd = &cobra.Command{
 					if err != nil {
 						er(err)
 					}
+					defer file.Close()
 
 					key, newBlob, err := repo.Add(file)
 					if err != nil {

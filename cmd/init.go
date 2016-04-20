@@ -77,5 +77,5 @@ func init() {
 
 	// Add local message flags
 	initCmd.Flags().Uint32VarP(&leafSize, "leafsize", "l", 5*1024*1024, "Leaf size for nodes")
-	initCmd.Flags().Uint64VarP(&maxRepoSize, "maxreposize", "m", 25*1024*1024*1024, "Maximum disk space that repository will consume")
+	initCmd.Flags().Uint64VarP(&maxRepoSize, "maxreposize", "m", 25*1024*1024*1024, "Maximum local disk space that repository will consume")
 }
