@@ -162,5 +162,5 @@ func init() {
 
 	// Local flags for list
 	snapshotListCmd.Flags().BoolVar(&presignedUrls, "presigned", false, "Generate presigned urls for direct access from S3")
-	snapshotListCmd.Flags().BoolVar(&presignedUrls, "json", false, "Output result in JSON")
+	snapshotListCmd.Flags().BoolVar(&jsonOutput, "json", false, "Output result in JSON")
 }
