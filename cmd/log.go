@@ -24,6 +24,7 @@ import (
 )
 
 var oneline bool
+var snapshots bool
 
 // logCmd represents the log command
 var logCmd = &cobra.Command{
@@ -37,7 +38,10 @@ var logCmd = &cobra.Command{
 			er(err)
 		}
 
-		list, err := repo.ListCommits("")
+		options := []s3git.ListCommitOptions{}
+		options = append(options, s3git.ListCommitOptionSetOnlySnapshots(true))
+
+		list, err := repo.ListCommits("", options...)
 		if err != nil {
 			er(err)
 		}
@@ -70,4 +74,5 @@ func init() {
 
 	// Add local message flags
 	logCmd.Flags().BoolVarP(&oneline, "pretty", "p", false, "Pretty format")
+	logCmd.Flags().BoolVar(&snapshots, "snapshots", false, "Just show snapshot commits")
 }
