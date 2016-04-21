@@ -39,7 +39,7 @@ var logCmd = &cobra.Command{
 		}
 
 		options := []s3git.ListCommitOptions{}
-		options = append(options, s3git.ListCommitOptionSetOnlySnapshots(true))
+		options = append(options, s3git.ListCommitOptionSetOnlySnapshots(snapshots))
 
 		list, err := repo.ListCommits("", options...)
 		if err != nil {
