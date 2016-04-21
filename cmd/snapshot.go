@@ -22,6 +22,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var dedupe bool
 // snapshotCmd represents the snapshot command
 var snapshotCmd = &cobra.Command{
 	Use:   "snapshot",
@@ -80,7 +81,7 @@ var snapshotCheckoutCmd = &cobra.Command{
 			commit = args[1]
 		}
 
-		err = repo.SnapshotCheckout(args[0], commit, hydrate)
+		err = repo.SnapshotCheckout(args[0], commit, dedupe)
 		if err != nil {
 			er(err)
 		}
@@ -173,7 +174,7 @@ func init() {
 	snapshotCreateCmd.Flags().StringVarP(&message, "message", "m", "", "Message for the commit of create snapshot")
 
 	// Local flags for checkout
-	snapshotCheckoutCmd.Flags().BoolVar(&hydrate, "hydrate", false, "Checkout in hydrated (original) format")
+	snapshotCheckoutCmd.Flags().BoolVar(&dedupe, "dedupe", false, "Checkout in deduped (pointers) format")
 
 	// Local flags for list
 	snapshotListCmd.Flags().BoolVar(&presignedUrls, "presigned", false, "Generate presigned urls for direct access from S3")
