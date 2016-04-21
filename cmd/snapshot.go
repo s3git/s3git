@@ -23,6 +23,7 @@ import (
 )
 
 var dedupe bool
+var hash bool
 var presignedUrls bool
 var jsonOutput bool
 
@@ -111,8 +112,12 @@ var snapshotListCmd = &cobra.Command{
 			commit = args[0]
 		}
 
-		// TODO: Dump result in JSON format
-		err = repo.SnapshotList(commit, presignedUrls)
+		options := []s3git.SnapshotListOptions{}
+		options = append(options, s3git.SnapshotListOptionSetShowHash(hash))
+		options = append(options, s3git.SnapshotListOptionSetPresignedUrls(presignedUrls))
+		options = append(options, s3git.SnapshotListOptionSetJsonOutput(jsonOutput))
+
+		err = repo.SnapshotList(commit, options...)
 		if err != nil {
 			er(err)
 		}
@@ -161,6 +166,7 @@ func init() {
 	snapshotCheckoutCmd.Flags().BoolVar(&dedupe, "dedupe", false, "Checkout in deduped (pointers) format")
 
 	// Local flags for list
+	snapshotListCmd.Flags().BoolVar(&hash, "hash", false, "Show hash of object")
 	snapshotListCmd.Flags().BoolVar(&presignedUrls, "presigned", false, "Generate presigned urls for direct access from S3")
 	snapshotListCmd.Flags().BoolVar(&jsonOutput, "json", false, "Output result in JSON")
 }
