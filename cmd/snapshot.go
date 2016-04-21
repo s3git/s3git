@@ -23,6 +23,9 @@ import (
 )
 
 var dedupe bool
+var presignedUrls bool
+var jsonOutput bool
+
 // snapshotCmd represents the snapshot command
 var snapshotCmd = &cobra.Command{
 	Use:   "snapshot",
@@ -88,9 +91,6 @@ var snapshotCheckoutCmd = &cobra.Command{
 	},
 }
 
-var presignedUrls bool
-var jsonOutput bool
-
 var snapshotListCmd = &cobra.Command{
 	Use:   "ls ([commit])",
 	Short: "List a snapshot",
@@ -117,21 +117,6 @@ var snapshotListCmd = &cobra.Command{
 			er(err)
 		}
 
-	},
-}
-
-var snapshotLogCmd = &cobra.Command{
-	Use:   "log",
-	Short: "Show commit log for snapshots",
-	Long: "Show commit log for snapshots",
-	Run: func(cmd *cobra.Command, args []string) {
-
-		_/*repo*/, err := s3git.OpenRepository(".")
-		if err != nil {
-			er(err)
-		}
-
-		// TODO: Implement log
 	},
 }
 
@@ -167,7 +152,6 @@ func init() {
 	snapshotCmd.AddCommand(snapshotCreateCmd)
 	snapshotCmd.AddCommand(snapshotCheckoutCmd)
 	snapshotCmd.AddCommand(snapshotListCmd)
-	snapshotCmd.AddCommand(snapshotLogCmd)
 	snapshotCmd.AddCommand(snapshotStatusCmd)
 
 	// Local flags for create
