@@ -22,6 +22,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var pushAfterCreate bool
 var dedupe bool
 var hash bool
 var presignedUrls bool
@@ -57,8 +58,12 @@ var snapshotCreateCmd = &cobra.Command{
 		}
 		if nothing {
 			fmt.Println("No changes to snapshot")
-		} else {
-			fmt.Printf("[commit %s]\n", key)
+			return
+		}
+
+		fmt.Printf("[commit %s]\n", key)
+		if pushAfterCreate {
+			// TODO: Push new snapshot upstream
 		}
 	},
 }
@@ -161,6 +166,7 @@ func init() {
 
 	// Local flags for create
 	snapshotCreateCmd.Flags().StringVarP(&message, "message", "m", "", "Message for the commit of create snapshot")
+	snapshotCreateCmd.Flags().BoolVarP(&pushAfterCreate, "push", "p", false, "Perform immediate push after create")
 
 	// Local flags for checkout
 	snapshotCheckoutCmd.Flags().BoolVar(&dedupe, "dedupe", false, "Checkout in deduped (pointers) format")
