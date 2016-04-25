@@ -23,6 +23,8 @@ import (
 	"github.com/cheggaaa/pb"
 )
 
+var checkout bool
+
 // pullCmd represents the pull command
 var pullCmd = &cobra.Command{
 	Use:   "pull",
@@ -54,12 +56,20 @@ var pullCmd = &cobra.Command{
 
 		if barPulling == nil {
 			fmt.Println("Already up-to-date.")
-		} else {
-			outputStats(repo)
+			return
+		}
+
+		outputStats(repo)
+
+		if checkout {
+			// TODO: Checkout latest snaphost
 		}
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(pullCmd)
+
+	// Local flags
+	pullCmd.Flags().BoolVarP(&checkout, "checkout", "c", false, "Checkout latest snapshot after pull")
 }
