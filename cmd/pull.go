@@ -62,7 +62,7 @@ var pullCmd = &cobra.Command{
 		outputStats(repo)
 
 		if checkout {
-			// TODO: Checkout latest snaphost
+			snapshotCheckoutCmd.Run(snapshotCheckoutCmd, []string{"."})
 		}
 	},
 }
