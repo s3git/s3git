@@ -63,7 +63,7 @@ var snapshotCreateCmd = &cobra.Command{
 
 		fmt.Printf("[commit %s]\n", key)
 		if pushAfterCreate {
-			// TODO: Push new snapshot upstream
+			pushCmd.Run(pushCmd, []string{})
 		}
 	},
 }
