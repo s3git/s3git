@@ -293,7 +293,7 @@ FAQ
 ---
 
 **Q** Is s3git compatible to git at the binary level?  
-**A** No. git is optimized for text content with very nice and powerful diffing and using compressed storage whereas s3git is more focused on large repos with primarily non-text blobs backed up cloud storage like S3.  
+**A** No. git is optimized for text content with very nice and powerful diffing and using compressed storage whereas s3git is more focused on large repos with primarily non-text blobs backed up by cloud storage like S3.  
 **Q** Do you support encryption?  
 **A** No. However it is trivial to encrypt data before streaming into `s3git add`, eg pipe it through `openssl enc` or similar.  
 **Q** Do you support zipping?  
