@@ -12,6 +12,8 @@ Build and Release Management
 - Allow servers to checkout a release and go live
 - Machines can selectively fall back to any previous version if needed
 
+See [binary release management](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) for an example using the Kubernetes project.
+
 DevOps Scenarios
 ----------------
 
