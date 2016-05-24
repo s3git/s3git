@@ -106,6 +106,11 @@ hello s3git
 
 _Note: Do not store any important info in the s3git-playground bucket. It will be auto-deleted within 24-hours._
  
+Directory versioning/snapshotting support (or binary release management)
+------------------------------------------------------------------------
+
+See [here](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) for how to version directories using snapshots (WIP).
+
 Clone the YFCC100M dataset
 --------------------------
 
