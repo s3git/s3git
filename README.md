@@ -109,7 +109,15 @@ _Note: Do not store any important info in the s3git-playground bucket. It will b
 Directory versioning
 --------------------
 
-In addition to storing 'filename-less' content as shown above you can also use s3git for directory versioning. This allows for instance binary release managment of the output of build processes. Here is a simple example:
+You can also use s3git for directory versioning. This allows you to 'capture' changes coherently all the way down from a directory and subsequently to go back to previous versions of the *full state of the directory* (and not just any file). Think of it as a Time Machine but then for directories instead of individual files.
+
+So instead of 'saving' a directory by making a full copy into 'MyFolder-v2' (and 'MyFolder-v3', etc.) you capture the state of a directory and give it a meaningful message as version so that it is always easy to go back to the version you are looking for.
+
+In addition you can discard any uncommitted changes that you made and go back to the last version that you have captured, which basically means you can (after committing) mess around in a directory and then be rest assured that you can always go back to its original state.
+
+If you push your repository into the cloud then you will have an automatic backup and you can easily collaborate with other people.
+
+Lastly, it works of course with huge binary data too, so not just text files as in the following 'demo' example:
 
 ```sh
 $ mkdir dir-versioning && cd dir-versioning
@@ -139,7 +147,7 @@ Second line
 $ more text2.txt
 Another file
 $ #
-$ # Go back one revision in time
+$ # Go back one version in time
 $ s3git snapshot checkout . HEAD^
 $ more text.txt
 First line
@@ -152,7 +160,7 @@ $ more text2.txt
 Another file
 ```
 
-Note that snapshotting works for all files in the directory including any subdirectories thereof. Click the link for a more elaborate repository that includes all releases of the [Kubernetes](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) project.
+Note that snapshotting works for all files in the directory including any subdirectories. Click the following link for a more elaborate repository that includes all releases of the [Kubernetes](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) project.
 
 Clone the YFCC100M dataset
 --------------------------
