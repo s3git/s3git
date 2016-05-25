@@ -14,9 +14,9 @@ $ cd s3git-kubernetes
 $ # Make sure we have an empty directory
 $ rm -rf *
 $ # Download latest release
-$ curl -sL https://github.com/kubernetes/kubernetes/releases/download/v1.2.2/kubernetes.tar.gz | tar xz -C ..
+$ curl -sL https://github.com/kubernetes/kubernetes/releases/download/v1.2.4/kubernetes.tar.gz | tar xz -C ..
 $ # Create snaphost
-$ s3git snapshot create -m "kubernetes v1.2.2" .
+$ s3git snapshot create -m "kubernetes v1.2.4" .
 $ # And push to cloud
 $ s3git push
 ```
@@ -39,6 +39,8 @@ If you want to clone the repo on the new machine, do this
 
 ```sh
 $ s3git clone s3://s3git-kubernetes -a "AKIAJYNT4FCBFWDQPERQ" -s "OVcWH7ZREUGhZJJAqMq4GVaKDKGW6XyKl80qYvkW"
+Cloning into .../s3git-kubernetes
+Done. Totaling 2,773 objects.
 $ cd s3git-kubernetes
 $ du -sh .
 396K .
@@ -75,19 +77,19 @@ Diff a file between revisions
 If you know the hashes of two files you would like to diff use `s3git cat` to fetch the files and pipe them to diff (in this case they correspond to the version file in the root directory):
 
 ```sh
-$ $ diff <(s3git cat 834f2572) <(s3git cat ac4e363d)1c1
-< v1.2.2
+$ diff <(s3git cat de749f48) <(s3git cat a3eeab16)
+< v1.2.4
 ---
-> v1.2.1
+> v1.2.3
 ```
 
 Using the `s3git snaphost ls --hash` you can list the files of a snapshot (together with the corresponding hash) and `grep` the file that you are looking, get its hash and pass it on to `s3git cat`.
 
 ```sh
 $ diff <(s3git cat `s3git snapshot ls --hash HEAD | grep version | grep -v docs | awk '{print $2}'`) <(s3git cat `s3git snapshot ls --hash HEAD^ | grep version | grep -v docs | awk '{print $2}'`)
-< v1.2.2
+< v1.2.4
 ---
-> v1.2.1
+> v1.2.3
 ```
 
 Grab straight out of Cloud Storage
