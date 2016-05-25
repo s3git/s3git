@@ -27,11 +27,11 @@ Download binaries
 
 ### OSX
 
-Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-darwin-amd64)
+Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-darwin-amd64](https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-darwin-amd64)
 
 ```sh
 $ mkdir s3git && cd s3git
-$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-darwin-amd64
+$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-darwin-amd64
 $ chmod +x s3git
 $ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
 $ s3git
@@ -39,11 +39,11 @@ $ s3git
 
 ### Linux
 
-Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-linux-amd64)
+Download `s3git` from [https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-linux-amd64](https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-linux-amd64)
 
 ```sh
 $ mkdir s3git && cd s3git
-$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.1/s3git-linux-amd64
+$ wget -q -O s3git https://github.com/s3git/s3git/releases/download/v0.9.2/s3git-linux-amd64
 $ chmod +x s3git
 $ export PATH=$PATH:${PWD}   # Add current dir where s3git has been downloaded to
 $ s3git
