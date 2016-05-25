@@ -12,7 +12,7 @@ Exactly like git, s3git does not require any server-side components, just downlo
 Use cases for s3git
 -------------------
 
-- Build and Release Management
+- Build and Release Management (see [example](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) with Kubernetes releases).
 - DevOps Scenarios
 - Data Consolidation
 - Analytics
@@ -106,10 +106,52 @@ hello s3git
 
 _Note: Do not store any important info in the s3git-playground bucket. It will be auto-deleted within 24-hours._
  
-Directory versioning/snapshotting support (or binary release management)
-------------------------------------------------------------------------
+Directory versioning
+--------------------
 
-See [here](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) for how to version directories using snapshots (WIP).
+In addition to storing 'filename-less' content as shown above you can also use s3git for directory versioning. This allows for instance binary release managment of the output of build processes. Here is a simple example:
+
+```sh
+$ mkdir dir-versioning && cd dir-versioning
+$ s3git init .
+$ # Just create a single file
+$ echo "First line" > text.txt && ls -l
+-rw-rw-r-- 1 ec2-user ec2-user 11 May 25 09:06 text.txt
+$ # Create initial snapshot
+$ #
+$ s3git snapshot create -m "Initial snapshot" .
+$ # Add new file to initial file and create another file
+$ echo "Second line" >> text.txt && echo "Another file" > text2.txt && ls -l
+-rw-rw-r-- 1 ec2-user ec2-user 23 May 25 09:08 text.txt
+-rw-rw-r-- 1 ec2-user ec2-user 13 May 25 09:08 text2.txt
+$ s3git snapshot status .
+     New: /home/ec2-user/dir-versioning/text2.txt
+Modified: /home/ec2-user/dir-versioning/text.txt
+$ #
+$ s3git snapshot create -m "Second snapshot" .
+$ s3git log --pretty
+3a4c3466264904fed3d52a1744fb1865b21beae1a79e374660aa231e889de41191009afb4795b61fdba9c156 Second snapshot
+77a8e169853a7480c9a738c293478c9923532f56fcd02e3276142a1a29ac7f0006b5dff65d5ca245255f09fa Initial snapshot
+$ more text.txt
+First line
+Second line
+$ more text2.txt
+Another file
+$ #
+$ # Go back one revision in time
+$ s3git snapshot checkout . HEAD^
+$ more text.txt
+First line
+$ more text2.txt
+text2.txt: No such file or directory
+$ #
+$ # Switch back to latest revision
+$ s3git snapshot checkout .
+$ more text2.txt
+Another file
+```
+
+Note that snapshotting works for all files in the directory including any subdirectories thereof. For a more elaborate example that includes all releases of the Kubernetes project see [here](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md).
 
 Clone the YFCC100M dataset
 --------------------------
