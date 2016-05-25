@@ -32,8 +32,8 @@ $ s3git pull
 $ s3git snapshot checkout .
 ```
 
-Clone on new machine
---------------------
+All releases
+------------
 
 If you want to clone the repo on the new machine, do this
 
