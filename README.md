@@ -117,8 +117,8 @@ $ s3git init .
 $ # Just create a single file
 $ echo "First line" > text.txt && ls -l
 -rw-rw-r-- 1 ec2-user ec2-user 11 May 25 09:06 text.txt
-$ # Create initial snapshot
 $ #
+$ # Create initial snapshot
 $ s3git snapshot create -m "Initial snapshot" .
 $ # Add new file to initial file and create another file
 $ echo "Second line" >> text.txt && echo "Another file" > text2.txt && ls -l
@@ -128,6 +128,7 @@ $ s3git snapshot status .
      New: /home/ec2-user/dir-versioning/text2.txt
 Modified: /home/ec2-user/dir-versioning/text.txt
 $ #
+$ # Create second snapshot
 $ s3git snapshot create -m "Second snapshot" .
 $ s3git log --pretty
 3a4c3466264904fed3d52a1744fb1865b21beae1a79e374660aa231e889de41191009afb4795b61fdba9c156 Second snapshot
