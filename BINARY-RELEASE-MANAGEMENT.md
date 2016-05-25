@@ -43,6 +43,8 @@ $ cd s3git-kubernetes
 $ du -sh .
 396K .
 $ s3git log --pretty
+5882e0fa550c2997c93830a35b12cbe1185c8f64c1e35ccffe29b97ef26d81ef4dfbb75cd5dfca8993430a82a2f48ff0b7 kubernetes v1.2.4
+f68893ebf30d1aa43ca70eaaacde7092dc25640f3d8b43b2d4f2edb552723f7c693558a3ded8bbfe4779b0eca221f93e29 kubernetes v1.2.3
 8330ba28541c0662d11f4c61357c78f601a44b633ba6a09257f0ea8fc442b0e41b18bcac4b34a875e4161d5bd921dc6468 kubernetes v1.2.2
 12c564ac90917a20c01e31be7043485497b0f854aa97bdf6c3d931342133ccdf0d49f6b7ebd01cca2b7ce50f1de59a3359 kubernetes v1.2.1
 de39be9f14e674ca749a48a284627a79fdb7807b715d71efaf366205b3ad99890b59022cdbbbd2c7e6c9ece8ba5ce1f158 kubernetes v1.2.0
@@ -58,10 +60,10 @@ e5c2add2c101e71429d1f7a8fa58ddc63a428f87d74fa7ed99527c1d9037e8673f8835d3bb207b3e
 7b1fcf3fc3d07d501ad2ca75205a2f4bf7067a0c2267ebbcb516697bad36005fe716c8b239ce664e0a6ee1adf36130f328 kubernetes v1.0.1
 $ s3git snapshot checkout . 
 $ platforms/darwin/amd64/kubectl version -c
-Client Version: version.Info{Major:"1", Minor:"2", GitVersion:"v1.2.2", GitCommit:"528f879e7d3790ea4287687ef0ab3f2a01cc2718", GitTreeState:"clean"}
+Client Version: version.Info{Major:"1", Minor:"2", GitVersion:"v1.2.4", GitCommit:"3eed1e3be6848b877ff80a93da3785d9034d0a4f", GitTreeState:"clean"}
 $ s3git snapshot checkout . HEAD^
 $ platforms/darwin/amd64/kubectl version -c
-Client Version: version.Info{Major:"1", Minor:"2", GitVersion:"v1.2.1", GitCommit:"50809107cd47a1f62da362bccefdd9e6f7076145", GitTreeState:"clean"}
+Client Version: version.Info{Major:"1", Minor:"2", GitVersion:"v1.2.3", GitCommit:"882d296a99218da8f6b2a340eb0e81c69e66ecc7", GitTreeState:"clean"}
 $ s3git snapshot checkout . 7b1fcf3f
 $ platforms/darwin/amd64/kubectl version -c
 Client Version: version.Info{Major:"1", Minor:"0", GitVersion:"v1.0.1", GitCommit:"6a5c06e3d1eb27a6310a09270e4a5fb1afa93e74", GitTreeState:"clean"}
