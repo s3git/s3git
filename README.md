@@ -120,7 +120,7 @@ $ echo "First line" > text.txt && ls -l
 $ #
 $ # Create initial snapshot
 $ s3git snapshot create -m "Initial snapshot" .
-$ # Add new file to initial file and create another file
+$ # Add new line to initial file and create another file
 $ echo "Second line" >> text.txt && echo "Another file" > text2.txt && ls -l
 -rw-rw-r-- 1 ec2-user ec2-user 23 May 25 09:08 text.txt
 -rw-rw-r-- 1 ec2-user ec2-user 13 May 25 09:08 text2.txt
