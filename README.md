@@ -12,7 +12,7 @@ Exactly like git, s3git does not require any server-side components, just downlo
 Use cases for s3git
 -------------------
 
-- Build and Release Management (see [example](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) with Kubernetes releases).
+- Build and Release Management (see [example](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) with all Kubernetes releases).
 - DevOps Scenarios
 - Data Consolidation
 - Analytics
@@ -152,7 +152,7 @@ $ more text2.txt
 Another file
 ```
 
-Note that snapshotting works for all files in the directory including any subdirectories thereof. For a more elaborate example that includes all releases of the Kubernetes project see [here](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md).
+Note that snapshotting works for all files in the directory including any subdirectories thereof. Click the link for a more elaborate repository that includes all releases of the [Kubernetes](https://github.com/s3git/s3git/blob/master/BINARY-RELEASE-MANAGEMENT.md) project.
 
 Clone the YFCC100M dataset
 --------------------------
