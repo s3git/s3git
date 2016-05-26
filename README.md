@@ -323,16 +323,18 @@ Usage:
   s3git [command]
 
 Available Commands:
-  add         Add file(s) to the repository
+  add         Add stream or file(s) to the repository
   cat         Read a file from the repository
   clone       Clone a repository into a new directory
   commit      Commit the changes in the repository
   init        Create an empty repository
+  log         Show commit log
   ls          List files in the repository
   pull        Update local repository
   push        Update remote repositories
   remote      Manage remote reposities
-  status      Show changes to repository
+  snapshot    Manage snapshots
+  status      Show changes in repository
 
 Flags:
   -h, --help[=false]: help for s3git
