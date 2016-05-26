@@ -332,7 +332,7 @@ Available Commands:
   ls          List files in the repository
   pull        Update local repository
   push        Update remote repositories
-  remote      Manage remote reposities
+  remote      Manage remote repositories
   snapshot    Manage snapshots
   status      Show changes in repository
 
