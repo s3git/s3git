@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"github.com/s3git/s3git-go"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // remoteCmd represents the remote command
@@ -47,9 +48,9 @@ var remoteAddCmd = &cobra.Command{
 		}
 
 		options := []s3git.RemoteOptions{}
-		options = append(options, s3git.RemoteOptionSetEndpoint(endpoint))
+		options = append(options, s3git.RemoteOptionSetEndpoint(viper.GetString(ENDPOINT)))
 
-		err = repo.RemoteAdd(args[0], resource, accessKey, secretKey, options...)
+		err = repo.RemoteAdd(args[0], resource, viper.GetString(ACCESS_KEY), viper.GetString(SECRET_KEY), options...)
 		if err != nil {
 			er(err)
 		}

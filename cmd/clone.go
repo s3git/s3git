@@ -25,6 +25,7 @@ import (
 	"github.com/s3git/s3git-go"
 	"github.com/cheggaaa/pb"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/dustin/go-humanize"
 )
 
@@ -86,9 +87,9 @@ var cloneCmd = &cobra.Command{
 		}
 
 		options := []s3git.CloneOptions{}
-		options = append(options, s3git.CloneOptionSetAccessKey(accessKey))
-		options = append(options, s3git.CloneOptionSetSecretKey(secretKey))
-		options = append(options, s3git.CloneOptionSetEndpoint(endpoint))
+		options = append(options, s3git.CloneOptionSetAccessKey(viper.GetString(ACCESS_KEY)))
+		options = append(options, s3git.CloneOptionSetSecretKey(viper.GetString(SECRET_KEY)))
+		options = append(options, s3git.CloneOptionSetEndpoint(viper.GetString(ENDPOINT)))
 		options = append(options, s3git.CloneOptionSetDownloadProgress(progressDownload))
 		options = append(options, s3git.CloneOptionSetProcessingProgress(progressProcessing))
 

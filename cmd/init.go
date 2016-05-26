@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 	"github.com/spf13/cobra"
 	"github.com/s3git/s3git-go"
+	"github.com/spf13/viper"
 )
 
 var resource string
@@ -61,7 +62,7 @@ var initCmd = &cobra.Command{
 
 		// Add remote when resource specifier is not empty (access & secret may be omitted for public access)
 		if resource != "" {
-			err := repo.RemoteAdd("primary", resource, accessKey, secretKey)
+			err := repo.RemoteAdd("primary", resource, viper.GetString(ACCESS_KEY), viper.GetString(SECRET_KEY))
 			if err != nil {
 				er(err)
 			}

@@ -29,6 +29,10 @@ func er(msg interface{}) {
 	os.Exit(-1)
 }
 
+const ENDPOINT = "endpoint"
+const ACCESS_KEY = "access"
+const SECRET_KEY = "secret"
+
 var endpoint string
 var accessKey string
 var secretKey string
@@ -56,12 +60,12 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	cmd := RootCmd
-	cmd.PersistentFlags().StringVarP(&accessKey, "access", "a", "", "Access key for S3 remote")
-	viper.BindPFlag("access", cmd.PersistentFlags().Lookup("access"))
-	cmd.PersistentFlags().StringVarP(&secretKey, "secret", "s", "", "Secret key for S3 remote")
-	viper.BindPFlag("secret", cmd.PersistentFlags().Lookup("secret"))
-	cmd.PersistentFlags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for S3 remote")
-	viper.BindPFlag("endpoint", cloneCmd.PersistentFlags().Lookup("endpoint"))
+	cmd.PersistentFlags().StringVarP(&accessKey, ACCESS_KEY, "a", "", "Access key for S3 remote")
+	viper.BindPFlag(ACCESS_KEY, cmd.PersistentFlags().Lookup(ACCESS_KEY))
+	cmd.PersistentFlags().StringVarP(&secretKey, SECRET_KEY, "s", "", "Secret key for S3 remote")
+	viper.BindPFlag(SECRET_KEY, cmd.PersistentFlags().Lookup(SECRET_KEY))
+	cmd.PersistentFlags().StringVarP(&endpoint, ENDPOINT, "e", "", "Endpoint for S3 remote")
+	viper.BindPFlag(ENDPOINT, cloneCmd.PersistentFlags().Lookup(ENDPOINT))
 }
 
 // initConfig reads in config file
