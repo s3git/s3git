@@ -108,8 +108,4 @@ func init() {
 
 	// Add local message flags
 	remoteAddCmd.Flags().StringVarP(&resource, "resource", "r", "", "URL for remote S3")
-	remoteAddCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for remote S3")
-	remoteAddCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for remote S3")
-	remoteAddCmd.Flags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for remote S3")
 }
-
