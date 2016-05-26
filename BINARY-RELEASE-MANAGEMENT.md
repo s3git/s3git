@@ -95,11 +95,15 @@ $ diff <(s3git cat `s3git snapshot ls --hash HEAD | grep version | grep -v docs 
 Grab straight out of Cloud Storage
 ----------------------------------
 
-If you push with the `--hydrate` option you can actually grab the files straight out of S3/Cloud Storage. In order for this you need to use the `--presigned` option for the `s3git snapshot ls` command. Then a simply `curl` will allow you to go get the object.
+If you push with the `--hydrate` option you can actually grab the files straight out of S3/Cloud Storage. In order for this you need to use the `--presigned` option for the `s3git snapshot ls` command. Then a simply `wget` or `curl` will then allow you to fetch the object.
 
 ```sh
-$ s3git snapshot ls --presigned
-$ curl 
+$ # Look for README file  (NB need to exclude docs, examples and cluster subdirs as these contain READMEs as well)
+$ s3git snapshot ls --presigned HEAD | grep README | grep -v 'docs\|examples\|cluster'
+/users/test/kubernetes/README.md --> https://s3git-kubernetes.s3.amazonaws.com/dc8f38d3866bc8958d13fd6f35ffbb117dcafe6670a49a6df2ea8b1d20df069bf89e6184925516d46ca009623d9c03238e6d7699c41c310fda7f9c1fa84ecd1c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJYNT4FCBFWDQPERQ%2F20160526%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20160526T082654Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=fe43befb292a1e570b99a8633756b6746113d609e64cd59de14e3426f7e41a00
+$
+$ # Grab URL (third element) and pass to wget and dump to stdout
+$ s3git snapshot ls --presigned HEAD | grep README | grep -v 'docs\|examples\|cluster' | awk '{print $3}' | wget -i - -O - -q
 ```
 
 (Note that the `--hydrate` option comes at the expense of losing deduplication savings.)
