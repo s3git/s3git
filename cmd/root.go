@@ -21,12 +21,17 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func er(msg interface{}) {
 	fmt.Println("Error:", msg)
 	os.Exit(-1)
 }
+
+var endpoint string
+var accessKey string
+var secretKey string
 
 // This represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -49,6 +54,14 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+
+	cmd := RootCmd
+	cmd.PersistentFlags().StringVarP(&accessKey, "access", "a", "", "Access key for S3 remote")
+	viper.BindPFlag("access", cmd.PersistentFlags().Lookup("access"))
+	cmd.PersistentFlags().StringVarP(&secretKey, "secret", "s", "", "Secret key for S3 remote")
+	viper.BindPFlag("secret", cmd.PersistentFlags().Lookup("secret"))
+	cmd.PersistentFlags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for S3 remote")
+	viper.BindPFlag("endpoint", cloneCmd.PersistentFlags().Lookup("endpoint"))
 }
 
 // initConfig reads in config file

@@ -120,8 +120,4 @@ func init() {
 	RootCmd.AddCommand(cloneCmd)
 
 	// Add local message flags
-	// TODO: 'Duplicate' flags for remote add command -- refactor into single definition
-	cloneCmd.Flags().StringVarP(&accessKey, "access", "a", "", "Access key for S3 remote")
-	cloneCmd.Flags().StringVarP(&secretKey, "secret", "s", "", "Secret key for S3 remote")
-	cloneCmd.Flags().StringVarP(&endpoint, "endpoint", "e", "", "Endpoint for S3 remote")
 }

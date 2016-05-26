@@ -24,9 +24,6 @@ import (
 )
 
 var resource string
-var accessKey string
-var secretKey string
-var endpoint string
 
 var leafSize uint32
 var maxRepoSize uint64
