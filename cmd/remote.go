@@ -25,8 +25,8 @@ import (
 // remoteCmd represents the remote command
 var remoteCmd = &cobra.Command{
 	Use:   "remote",
-	Short: "Manage remote reposities",
-	Long: "Manage remote reposities",
+	Short: "Manage remote repositories",
+	Long: "Manage remote repositories",
 }
 
 var remoteAddCmd = &cobra.Command{
