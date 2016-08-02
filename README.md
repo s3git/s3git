@@ -60,7 +60,7 @@ C:\Users\Username\Downloads> s3git.exe
 Building from source
 --------------------
 
-Build instructions are as follows (see [install golang](https://github.com/minio/minio/blob/master/INSTALLGO.md) for setting up a working golang environment):
+Build instructions are as follows (see [install golang](https://docs.minio.io/docs/how-to-install-golang) for setting up a working golang environment):
 
 ```sh
 $ go get -d github.com/s3git/s3git
